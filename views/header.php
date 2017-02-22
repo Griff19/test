@@ -25,5 +25,5 @@ $route = explode('/', $pars_url['path']);
     <?php } ?>
     <a href="<?= Site::$root?>/site/setlang?target=<?= $route[2]?>">[<?= Voca::t('CH_LANGUAGE') ?>]</a>
 </div>
-<?php var_dump($_SERVER['REQUEST_METHOD'])?>
+
 <div class="container">

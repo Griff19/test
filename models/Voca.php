@@ -1,11 +1,11 @@
 <?php
 
+/**
+ * Class Voca
+ * Для перевода текстов сайта
+ */
 class Voca
 {
-    public function access()
-    {
-        header('Location: '. Site::$root .'/site/_404');
-    }
 
     public static function arrayEn()
     {
@@ -22,7 +22,7 @@ class Voca
             'IN_THE_SYSTEM' => 'in the system',
             'USR_LOGIN' => 'Login',
             'USR_PASS' => 'Password',
-            'CONFIRM_PASS' => 'Enter the password again',
+            'CONFIRM_PASS' => 'Confirm the password',
             'FILL_OUT_FORM' => 'Please fill out the form',
             'FULL_NAME' => 'Full Name',
             'ADD_IMAGE' => 'Add an image',
@@ -34,7 +34,10 @@ class Voca
             'YOUR_LOGIN' => 'Your Login',
             'YOUR_PASS' => 'Your Password',
             'ADD_INFO' => 'Additional Information',
-            'ACCESS_DENI' => 'Wrong Login or Password'
+            'ACCESS_DENI' => 'Wrong Login or Password',
+            'CONFIRM_PASS_MATCH_PASS' => 'Confirm password must match the password',
+            'CONTAIN_ONLY_LETTERS' => 'Full Name must contain only letters',
+            'INVALID_EMAIL' => 'Invalid value "Email"',
 
         ];
     }
@@ -57,7 +60,7 @@ class Voca
             'IN_THE_SYSTEM' => 'в системе',
             'USR_LOGIN' => 'Логин',
             'USR_PASS' => 'Пароль',
-            'CONFIRM_PASS' => 'Введите пароль еще раз',
+            'CONFIRM_PASS' => 'Подтвердите пароль',
             'FILL_OUT_FORM' => 'Пожалуйста заполните форму',
             'FULL_NAME' => 'Фамиля Имя Отчество',
             'ADD_IMAGE' => 'Добавьте изображение',
@@ -70,10 +73,14 @@ class Voca
             'YOUR_PASS' => 'Ваш Пароль',
             'ADD_INFO' => 'Дополнительно',
             'ACCESS_DENI' => 'Не правильный Логин или Пароль',
+            'CONFIRM_PASS_MATCH_PASS' => 'Подтвержение пароля должно совпадать с паролем',
+            'CONTAIN_ONLY_LETTERS' => 'ФИО должно содержать только буквы',
+            'INVALID_EMAIL' => 'Не правильное значение "Email"',
         ];
     }
 
     /**
+     * Выводим надписи на нужном языке
      * @param $cons
      * @return mixed
      */
@@ -85,13 +92,16 @@ class Voca
             return self::arrayEn()[$cons];
     }
 
+    /**
+     * @return mixed
+     */
     public static function getLang()
     {
         return $_SESSION['lang'];
     }
 
     /**
-     *
+     * Устанавливаем текущий язык
      */
     public static function setLang()
     {
@@ -107,6 +117,6 @@ class Voca
         return false;
     }
 }
-
+//Первоначальная установка языка сразу после старта сессии
 if (!array_key_exists('lang', $_SESSION))
     $_SESSION['lang'] = 'ru';

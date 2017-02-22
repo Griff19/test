@@ -15,18 +15,14 @@ class User
 
     public $file;
 
-    public function access()
-    {
-        header('Location: '. Site::$root .'/site/_404');
-    }
-
     /**
+     * Проверяем уникальность логина
      * @return bool
      */
     public function validLogin()
     {
         $db = new Db();
-        $db->connect();
+        //$this->connect();
         $rows = $db->select('id, login', "login = '". $this->login ."'");
         if ($rows)
             return false;
@@ -60,17 +56,23 @@ class User
             $password = $this->password;
 
         if (empty($this->password2))
-            $str_err .= 'Подтвердите пароль <br/>';
+            $str_err .= Voca::t('CONFIRM_PASS'). '<br/>';
         else
             $password2 = $this->password2;
 
         if ($password !== $password2)
-            $str_err .= 'Подтверждение пароля должно совпадать с паролем <br/>';
+            $str_err .= Voca::t('CONFIRM_PASS_MATCH_PASS'). ' <br/>';
 
         if (!empty($this->email)) {
             $this->email = Helper::safetyStr($this->email);
             if(!filter_var($this->email, FILTER_VALIDATE_EMAIL))
-                $str_err .= 'Неверное значение "Email"<br/>';
+                $str_err .= Voca::t('INVALID_EMAIL'). '<br/>';
+        }
+
+        if (!empty($this->snp)) {
+            $this->snp = Helper::safetyStr($this->snp);
+            if (!preg_match('/^[а-яёa-z]+$/i', $this->snp))
+                $str_err .= Voca::t('CONTAIN_ONLY_LETTERS'). '<br/>';
         }
 
         if ($str_err !== '') {
@@ -87,7 +89,6 @@ class User
     public function login($login, $password)
     {
         $db = new Db();
-        $db->connect();
         $user = $db->validUser($login, md5($password));
         if ($user) {
             $_SESSION['login'] = $user['login'];
@@ -141,13 +142,17 @@ class User
         $user->email = $_POST['email'];
         $user->snp = $_POST['snp'];
         $user->memo = $_POST['memo'];
-        $user->loadfile();
 
-        if ($user->validate())
+        if ($user->validate()) {
+            $user->loadfile();
             if ($user->save()) {
                 Alert::setFlash('success', '<span style="color: darkgreen">Пользователь ' . $user->snp . ' успешно добавлен</span>');
-                return header('Location: '. Site::$root .'/site/login');
+                return header('Location: ' . Site::$root . '/site/login');
+            } else {
+                unlink(Site::$root . '/' .$user->file);
             }
+        }
+        //Если валидация не прошла - возвращаемся в форму
         $_SESSION['user'] = serialize($user);
         return header('Location: '. Site::$root .'/site/signup');
     }
@@ -157,16 +162,11 @@ class User
      */
     public function save()
     {
+        $this->password = md5($this->password);
+
         $db = new Db();
         if ($db->connect())
-            if ($db->insert('login, pass, email, snp, memo, link_file',
-                "'" . $this->login . "'," .
-                "'" . md5($this->password) . "'," .
-                "'" . $this->email . "'," .
-                "'" . $this->snp . "'," .
-                "'" . $this->memo . "'," .
-                "'" . $this->file . "'"
-                ))
+            if ($db->insert($this))
                 return true;
         return false;
     }
@@ -185,7 +185,6 @@ class User
                 $this->snp = $row['snp'];
                 $this->file = $row['link_file'];
                 $this->memo = $row['memo'];
-
             }
     }
 

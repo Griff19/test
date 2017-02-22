@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class Db
+ * @property mysqli $connection
+ */
 
 class Db
 {
@@ -10,10 +14,14 @@ class Db
 
     private $connection;
 
-    public function access()
+    /**
+     * Db constructor.
+     */
+    function __construct()
     {
-        header('Location: '. Site::$root .'/site/_404');
+        $this->connect();
     }
+
     /**
      * @return bool|mysqli
      */
@@ -31,6 +39,7 @@ class Db
     }
 
     /**
+     * Пока используется для проверки уникальности логина
      * @param $fields
      * @param $condition
      * @return array
@@ -49,49 +58,59 @@ class Db
     /**
      * @return array|bool
      */
-    public function selectAll()
-    {
-        $sql = 'SELECT * FROM users';
-        if (!$res = $this->connection->query($sql)){
-            return false;
-        }
-        else {
-            $arr = [];
-            while ($user = $res->fetch_assoc()) {
-                $arr[] = $user['username'];
-            }
-            return $arr;
-        }
-    }
+//    public function selectAll()
+//    {
+//        $sql = 'SELECT * FROM users';
+//        if (!$res = $this->connection->query($sql)){
+//            return false;
+//        }
+//        else {
+//            $arr = [];
+//            while ($user = $res->fetch_assoc()) {
+//                $arr[] = $user['username'];
+//            }
+//            return $arr;
+//        }
+//    }
 
     /**
      * @param $login
      * @param $password
-     * @return bool
+     * @return array|bool
      */
     public function validUser($login, $password){
-        $sql = "SELECT * FROM users WHERE login = '" . $login . "' AND pass = '" . $password . "'";
-        if (!$res = $this->connection->query($sql)){
-            return false;
-        }
-        else {
-            $row = $res->fetch_assoc();
+        $sql = "SELECT * FROM users WHERE login = ? AND pass = ?";
+        $prepare = $this->connection->prepare($sql);
+        $prepare->bind_param('ss', $login, $password);
+        $prepare->execute();
+        $res = $prepare->get_result();
+
+        $row = $res->fetch_assoc();
+        if ($row)
             return $row;
-        }
+        else
+            return false;
     }
 
+
     /**
-     * @param $labels
-     * @param $values
+     * @param $model User
      * @return bool
      */
-    public function insert($labels, $values)
+    public function insert($model)
     {
-        $sql = "INSERT INTO users (". $labels .") 
-                VALUES (". $values .")";
-        if ($this->connection->query($sql))
-            return true;
-        return false;
+        $sql = "INSERT INTO users (login, pass, email, snp, memo, link_file) VALUES (?, ?, ?, ?, ?, ?);";
+        /** @var mysqli_stmt $prepare */
+        $prepare = $this->connection->prepare($sql);
+        $prepare->bind_param('ssssss', $model->login, $model->password, $model->email, $model->snp, $model->memo, $model->file);
+        $prepare->execute();
+        if ($prepare->errno){
+            echo print_r($prepare->error);
+        }
+        $prepare->close();
+        $this->connection->close();
+
+        return true;
     }
 
     /**
@@ -100,13 +119,13 @@ class Db
      */
     public function find($id)
     {
-        $sql = "SELECT * FROM users WHERE id = " . $id;
+        $sql = "SELECT * FROM users WHERE id = ?";
+        $prepare = $this->connection->prepare($sql);
+        $prepare->bind_param('i', $id);
+        $prepare->execute();
+        $result = $prepare->get_result();
 
-        if ($res = $this->connection->query($sql))
-            $row = $res->fetch_assoc();
-        else
-            return false;
-
+        $row = $result->fetch_assoc();
         return $row;
     }
 }
