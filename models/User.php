@@ -33,13 +33,13 @@ class User
         $str_err = '';
 
         if(empty($this->login)) {
-            $str_err .= 'Заполните поле "Логин"<br/>';
+            $str_err .= Voca::t('FILL_FIELD_LOGIN'). '<br/>';
         }
         else {
             if ($this->validLogin())
                 $this->login = Helper::safetyStr($this->login);
             else
-                $str_err .= 'Такой логин уже используется <br/>';
+                $str_err .= Voca::t('LOGIN_EXIST'). '<br/>';
         }
 
         if(!empty($this->memo)) {
@@ -84,11 +84,11 @@ class User
         if ($user) {
             $_SESSION['login'] = $user['login'];
             $_SESSION['id'] = $user['id'];
-            header('Location: /test/site/profile');
+            header('Location: '. Site::$root .'/site/profile');
         }
         else {
             Alert::setFlash('error', '<span style="color: darkred">Вход не выполнен...</span>');
-            header('Location: /test/site/login');
+            header('Location: '. Site::$root .'/site/login');
         }
     }
 
@@ -98,7 +98,7 @@ class User
     public static function logout()
     {
         session_destroy();
-        header('Location: /test/site/index');
+        header('Location: '. Site::$root .'/site/index');
     }
 
     /**
@@ -138,10 +138,10 @@ class User
         if ($user->validate())
             if ($user->save()) {
                 Alert::setFlash('success', '<span style="color: darkgreen">Пользователь ' . $user->snp . ' успешно добавлен</span>');
-                return header('Location: /test/site/login');
+                return header('Location: '. Site::$root .'/site/login');
             }
         $_SESSION['user'] = serialize($user);
-        return header('Location: /test/site/signup');
+        return header('Location: '. Site::$root .'/site/signup');
     }
 
     /**

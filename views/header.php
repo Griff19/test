@@ -7,6 +7,7 @@ $route = explode('/', $pars_url['path']);
 <html lang="ru-Ru">
 <head>
     <link rel="stylesheet" href="../css/main.css">
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
     <meta charset="utf-8">
     <title> Тестовое задание </title>
 
@@ -18,10 +19,10 @@ $route = explode('/', $pars_url['path']);
 
 </div>
 <div class="container" style="background-color: aliceblue; height: 30px">
-    <a href="/test/site/index">[ <?= Voca::t('LINK_HOME')?> ]</a>
+    <a href=<?= Site::$root?>"/site/index">[ <?= Voca::t('LINK_HOME')?> ]</a>
     <?php if(isset($_SESSION['login']) && isset($_SESSION['id'])) { ?>
-        <a href="/test/user/logout">[ <?= Voca::t('LINK_EXIT')?> ]</a>
+        <a href=<?= Site::$root?>"/user/logout">[ <?= Voca::t('LINK_EXIT')?> ]</a>
     <?php } ?>
-    <a title="<?= Voca::t('CH_LANGUAGE')?>" href="/test/site/setlang?target=<?= $route[2]?>">[<?= Voca::getLang() ?>]</a>
+    <a href=<?= Site::$root?>"/site/setlang?target=<?= $route[2]?>">[<?= Voca::t('CH_LANGUAGE') ?>]</a>
 </div>
 <div class="container">

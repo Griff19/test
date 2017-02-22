@@ -9,8 +9,8 @@ if (array_key_exists('user', $_SESSION)) {
 }
 ?>
 <div>
-<h2> Укажите ваши данные: </h2>
-<form enctype="multipart/form-data" action="/test/user/newUser" method="post" >
+<h2><?= Voca::t('FILL_OUT_FORM')?></h2>
+<form enctype="multipart/form-data" action=<?= Site::$root?>"/user/newUser" method="post" >
     <label for="login"> <?= Voca::t('USR_LOGIN')?>: </label><br/>
     <input id="login" name="login" type="text" value="<?= isset($user) ? $user->login : '' ?>" size="20" maxlength="255">
     <div id="err_log" style="color: darkred"></div>
@@ -24,18 +24,19 @@ if (array_key_exists('user', $_SESSION)) {
     <br/>
     <br/>
     <label for="email"> Email: </label><br/>
-    <input id="email" name="email" type="text" value="<?= isset($user) ? $user->email : '' ?>"size="40" maxlength="255">
+    <input id="email" name="email" type="text" value="<?= isset($user) ? $user->email : '' ?>" size="40" maxlength="255">
     <br/>
-    <label for="snp"> ФИО: </label><br/>
-    <input id="snp" name="snp" type="text" value="<?= isset($user) ? $user->snp : '' ?>"size="40" maxlength="255"><br/>
+    <label for="snp"><?= Voca::t('FULL_NAME')?>:</label><br/>
+    <input id="snp" name="snp" type="text" value="<?= isset($user) ? $user->snp : '' ?>" size="40" maxlength="255"><br/>
     <br/>
     <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
-    Добавьте изображение: <input name="user_file" type="file" /><br/><br/>
-    <label for="memo"> Добавьте что-нибудь о себе:</label><br/>
+    <label for="user_file"><?= Voca::t('ADD_IMAGE')?>:</label><br/>
+    <input id="user_file" name="user_file" type="file" accept="image/jpeg,image/gif,image/png"/><br/><br/>
+    <label for="memo"><?= Voca::t('ABOUT_YOUSELF')?>:</label><br/>
     <textarea id="memo" name="memo" rows="3"></textarea>
     <br/>
     <br/>
-    <input type="submit" value="Сохранить"><br/>
+    <input type="submit" value="<?= Voca::t('SAVE')?>"><br/>
 </form>
 </div>
 
@@ -51,4 +52,5 @@ if (array_key_exists('user', $_SESSION)) {
         document.getElementById('err_pass').innerHTML = "";
         return true;
     }
+
 </script>

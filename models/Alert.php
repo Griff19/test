@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class Alert
+ * Для вывода предупредительных сообщений
+ */
 class Alert
 {
     public static function getFlash()

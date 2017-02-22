@@ -6,8 +6,10 @@ echo 'Initialize the application? (y - Yes, n - No): ';
 $s = fgets(STDIN, 255);
 
 if (trim($s) == "y") {
+    echo "Creating the necessary directories...\n";
+    mkdir(__DIR__ . '/img/');
 
-    echo 'Create Users table...' . "\n";
+    echo "Create Users table...\n";
     $db = new Db();
     $c = $db->connect();
 
@@ -23,8 +25,6 @@ if (trim($s) == "y") {
           UNIQUE KEY `users_login_uindex` (`login`)
         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
     ");
-
-
 
     echo 'Done.' . "\n";
 }
