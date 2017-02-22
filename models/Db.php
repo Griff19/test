@@ -10,6 +10,10 @@ class Db
 
     private $connection;
 
+    public function access()
+    {
+        header('Location: '. Site::$root .'/site/_404');
+    }
     /**
      * @return bool|mysqli
      */

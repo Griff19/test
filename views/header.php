@@ -19,10 +19,11 @@ $route = explode('/', $pars_url['path']);
 
 </div>
 <div class="container" style="background-color: aliceblue; height: 30px">
-    <a href=<?= Site::$root?>"/site/index">[ <?= Voca::t('LINK_HOME')?> ]</a>
+    <a href="<?= Site::$root?>/site/index">[ <?= Voca::t('LINK_HOME')?> ]</a>
     <?php if(isset($_SESSION['login']) && isset($_SESSION['id'])) { ?>
-        <a href=<?= Site::$root?>"/user/logout">[ <?= Voca::t('LINK_EXIT')?> ]</a>
+        <a href="<?= Site::$root?>/site/logout">[ <?= Voca::t('LINK_EXIT')?> ]</a>
     <?php } ?>
-    <a href=<?= Site::$root?>"/site/setlang?target=<?= $route[2]?>">[<?= Voca::t('CH_LANGUAGE') ?>]</a>
+    <a href="<?= Site::$root?>/site/setlang?target=<?= $route[2]?>">[<?= Voca::t('CH_LANGUAGE') ?>]</a>
 </div>
+<?php var_dump($_SERVER['REQUEST_METHOD'])?>
 <div class="container">

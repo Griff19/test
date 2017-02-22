@@ -15,6 +15,14 @@ class User
 
     public $file;
 
+    public function access()
+    {
+        header('Location: '. Site::$root .'/site/_404');
+    }
+
+    /**
+     * @return bool
+     */
     public function validLogin()
     {
         $db = new Db();
@@ -87,7 +95,7 @@ class User
             header('Location: '. Site::$root .'/site/profile');
         }
         else {
-            Alert::setFlash('error', '<span style="color: darkred">Вход не выполнен...</span>');
+            Alert::setFlash('error', '<span style="color: darkred">'. Voca::t('ACCESS_DENI') .'</span>');
             header('Location: '. Site::$root .'/site/login');
         }
     }

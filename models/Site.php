@@ -40,6 +40,12 @@ class Site
         include_once __DIR__ . '/../views/login.php';
     }
 
+    public function logout()
+    {
+        User::logout();
+        header('Location: '. Site::$root .'/site/index');
+    }
+
     /**
      *
      */
@@ -63,6 +69,11 @@ class Site
     public function signup()
     {
         include_once __DIR__ . '/../views/signup.php';
+    }
+
+    public function _404()
+    {
+        include_once __DIR__ . '/../views/_404.php';
     }
 
     /**

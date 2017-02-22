@@ -2,6 +2,11 @@
 
 class Voca
 {
+    public function access()
+    {
+        header('Location: '. Site::$root .'/site/_404');
+    }
+
     public static function arrayEn()
     {
         return [
@@ -25,6 +30,11 @@ class Voca
             'SAVE' => 'Submit',
             'FILL_FIELD_LOGIN' => 'Fill in the "Login"',
             'LOGIN_EXIST' => 'This login already exists',
+            'PAGE_PROFILE' => 'Profile Page',
+            'YOUR_LOGIN' => 'Your Login',
+            'YOUR_PASS' => 'Your Password',
+            'ADD_INFO' => 'Additional Information',
+            'ACCESS_DENI' => 'Wrong Login or Password'
 
         ];
     }
@@ -55,6 +65,11 @@ class Voca
             'SAVE' => 'Сохранить',
             'FILL_FIELD_LOGIN' => 'Заполните поле "Логин"',
             'LOGIN_EXIST' => 'Такой логин уже существует',
+            'PAGE_PROFILE' => 'Страница профиля',
+            'YOUR_LOGIN' => 'Ваш Логин',
+            'YOUR_PASS' => 'Ваш Пароль',
+            'ADD_INFO' => 'Дополнительно',
+            'ACCESS_DENI' => 'Не правильный Логин или Пароль',
         ];
     }
 

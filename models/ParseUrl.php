@@ -2,6 +2,11 @@
 
 class ParseUrl
 {
+    public function access()
+    {
+        header('Location: '. Site::$root .'/site/_404');
+    }
+
     public static function urlKeyValue($url)
     {
 
