@@ -71,7 +71,7 @@ class User
 
         if (!empty($this->snp)) {
             $this->snp = Helper::safetyStr($this->snp);
-            if (!preg_match('/^[а-яёa-z]+$/i', $this->snp))
+            if (!preg_match('/^[а-яёa-z ]+$/i', $this->snp))
                 $str_err .= Voca::t('CONTAIN_ONLY_LETTERS'). '<br/>';
         }
 
@@ -107,7 +107,7 @@ class User
     public static function logout()
     {
         session_destroy();
-        header('Location: '. Site::$root .'/site/index');
+        //header('Location: '. Site::$root .'/site/index');
     }
 
     /**
@@ -118,13 +118,14 @@ class User
         if ($_FILES['user_file']['size'] <= 0)
             return true;
 
-        $uploaddir = __DIR__ .'/../img/';
-        $uploadfile = $uploaddir . md5(basename($_FILES['user_file']['name']));
+        $upload_dir = __DIR__ .'/../img/';
+        $file_name = md5(basename($_FILES['user_file']['name']));
+        $upload_file = $upload_dir . $file_name;
 
-        if (move_uploaded_file($_FILES['user_file']['tmp_name'], $uploadfile)) {
+        if (move_uploaded_file($_FILES['user_file']['tmp_name'], $upload_file)) {
             Alert::setFlash('success', 'Файл был успешно загружен.');
-            $this->file = $uploadfile;
-            return $uploadfile;
+            $this->file = 'img/'. $file_name;
+            return $this->file;
         } else {
             Alert::setFlash('error', 'Ошибка загрузки файла');
             return false;
@@ -146,7 +147,7 @@ class User
         if ($user->validate()) {
             $user->loadfile();
             if ($user->save()) {
-                Alert::setFlash('success', '<span style="color: darkgreen">Пользователь ' . $user->snp . ' успешно добавлен</span>');
+                Alert::setFlash('success', '<span style="color: darkgreen">'. Voca::t('USER') . '"' . $user->snp . '"' .Voca::t('ADDED'));
                 return header('Location: ' . Site::$root . '/site/login');
             } else {
                 unlink(Site::$root . '/' .$user->file);

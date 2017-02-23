@@ -6,7 +6,9 @@
  */
 class Voca
 {
-
+    /**
+     * @return array
+     */
     public static function arrayEn()
     {
         return [
@@ -38,6 +40,10 @@ class Voca
             'CONFIRM_PASS_MATCH_PASS' => 'Confirm password must match the password',
             'CONTAIN_ONLY_LETTERS' => 'Full Name must contain only letters',
             'INVALID_EMAIL' => 'Invalid value "Email"',
+            'ENTER_PASS' => 'Enter password',
+            'PAGE_404' => '404 The requested page is not found',
+            'USER' => 'User',
+            'ADDED' => 'added successfully',
 
         ];
     }
@@ -76,6 +82,10 @@ class Voca
             'CONFIRM_PASS_MATCH_PASS' => 'Подтвержение пароля должно совпадать с паролем',
             'CONTAIN_ONLY_LETTERS' => 'ФИО должно содержать только буквы',
             'INVALID_EMAIL' => 'Не правильное значение "Email"',
+            'ENTER_PASS' => 'Введите пароль',
+            'PAGE_404' => '404 Запрашиваемая страница не найдена',
+            'USER' => 'Пользователь',
+            'ADDED' => 'успешно добавлен.',
         ];
     }
 

@@ -40,6 +40,5 @@ class Helper
             return false;
         }
 
-
     }
 }

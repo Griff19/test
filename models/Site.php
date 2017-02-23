@@ -27,7 +27,7 @@ class Site
     /**
      *
      */
-    public function index()
+    public static function index()
     {
         include_once __DIR__ . '/../views/index.php';
     }
@@ -35,7 +35,7 @@ class Site
     /**
      *
      */
-    public function login()
+    public static function login()
     {
         include_once __DIR__ . '/../views/login.php';
     }
@@ -49,9 +49,9 @@ class Site
     /**
      *
      */
-    public function profile()
+    public static function profile()
     {
-        if ( empty($_SESSION['login']) or empty($_SESSION['id'])) {
+        if ( empty($_SESSION['login']) or empty($_SESSION['id']) ) {
             header('Location: ' . Site::$root . '/site/login');
         }
         else {
