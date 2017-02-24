@@ -189,14 +189,14 @@ class User
     public function find($user_token)
     {
         $db = new Db();
-        if ($db->connect())
-            if ($row = $db->find($user_token)) {
 
-                $this->login = $row['login'];
-                $this->email = $row['email'];
-                $this->snp = $row['snp'];
-                $this->file = $row['link_file'];
-                $this->memo = $row['memo'];
-            }
+        if ($row = $db->find($user_token)) {
+
+            $this->login = $row['login'];
+            $this->email = $row['email'];
+            $this->snp = $row['snp'];
+            $this->file = $row['link_file'];
+            $this->memo = $row['memo'];
+        }
     }
 }

@@ -5,6 +5,7 @@
 
 ?>
 <div>
+
 <h3><?= Voca::t('PAGE_PROFILE')?> "<?= $user->snp?>" </h3>
 <img width="200px" src="<?= Site::$root?>/<?= $user->file ?>">
 <p>

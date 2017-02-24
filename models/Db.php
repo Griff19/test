@@ -87,7 +87,6 @@ class Db
     public function validUser($login, $password){
         $sql = "SELECT * FROM users WHERE login = ? AND pass = ?";
 
-
         $prepare = $this->connection->prepare($sql);
         if (!$prepare){
             return false;
@@ -129,14 +128,14 @@ class Db
     }
 
     /**
-     * @param $id
-     * @return bool
+     * @param $user_token
+     * @return array
      */
-    public function find($id)
+    public function find($user_token)
     {
         $sql = "SELECT * FROM users WHERE user_token = ?";
         $prepare = $this->connection->prepare($sql);
-        $prepare->bind_param('i', $id);
+        $prepare->bind_param('s', $user_token);
         $prepare->execute();
         $result = $prepare->get_result();
 

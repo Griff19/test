@@ -14,26 +14,26 @@ if (array_key_exists('user', $_SESSION)) {
       onsubmit="return validForm();">
     <label for="login"> * <?= Voca::t('USR_LOGIN')?>: </label><br/>
     <input id="login" name="login" type="text" value="<?= isset($user) ? $user->login : '' ?>" size="20" maxlength="255"
-        onchange="validLogin()">
+        onblur="validLogin()">
     <div id="err_log" class="error"></div>
     <br/>
     <label for="password"> * <?= Voca::t('USR_PASS')?>: </label><br/>
-    <input id="password" name="password" type="password" size="20" maxlength="255" onchange="validPass1()">
+    <input id="password" name="password" type="password" size="20" maxlength="255" onblur="validPass1()">
     <div id="err_pass1" class="error"></div>
     <br/>
     <label for="password2"> * <?= Voca::t('CONFIRM_PASS')?>: </label><br/>
-    <input id="password2" name="password2" type="password" size="20" maxlength="255" onchange="validPass2()">
+    <input id="password2" name="password2" type="password" size="20" maxlength="255" onblur="validPass2()">
     <div id="err_pass" class="error"></div>
     <br/>
 
     <label for="snp"> * <?= Voca::t('FULL_NAME')?>:</label><br/>
     <input id="snp" name="snp" type="text" value="<?= isset($user) ? $user->snp : '' ?>" size="40" maxlength="255"
-           onchange="validSnp(this.value)"><br/>
+           onblur="validSnp(this.value)"><br/>
     <div id="err_snp" class="error"></div>
     <br/>
     <label for="email"> Email: </label><br/>
     <input id="email" name="email" type="text" value="<?= isset($user) ? $user->email : '' ?>" size="40" maxlength="255"
-        onchange="validEmail()">
+        onblur="validEmail()">
     <div id="err_email" class="error"></div>
     <br/>
 
@@ -42,7 +42,7 @@ if (array_key_exists('user', $_SESSION)) {
     <input id="user_file" name="user_file" type="file" accept="image/jpeg,image/gif,image/png"/><br/><br/>
     <label for="memo"><?= Voca::t('ABOUT_YOUSELF')?>:</label><br/>
 
-    <textarea id="memo" name="memo" rows="3" ></textarea>
+    <textarea id="memo" name="memo" rows="3" cols="40"></textarea>
     <div id="err_memo" class="error"></div>
     <br/>
     <br/>
