@@ -31,6 +31,7 @@ class User
             return true;
     }
     /**
+     * Проверяем введенные данные
      * @return bool
      */
     public function validate()
@@ -53,8 +54,11 @@ class User
 
         if (empty($this->password))
             $str_err .= Voca::t('ENTER_PASS').'<br/>';
-        else
+        else {
             $password = $this->password;
+            //if (!preg_match('/^[a-z0-9_-]{6,}$/', $password))
+            //    $str_err .= Voca::t('PASS_TO_EASY'). ' <br/>';
+        }
 
         if (empty($this->password2))
             $str_err .= Voca::t('CONFIRM_PASS'). '<br/>';
@@ -75,7 +79,6 @@ class User
             $reg = '/^[^0-9]+$/i';
             if (!preg_match($reg, $this->snp))
                 $str_err .= Voca::t('CONTAIN_ONLY_LETTERS'). '<br/>';
-
         }
 
         if ($str_err !== '') {
@@ -151,7 +154,7 @@ class User
         if ($user->validate()) {
             $user->loadfile();
             if ($user->save()) {
-                Alert::setFlash('success', '<span style="color: darkgreen">'. Voca::t('USER') . '"' . $user->snp . '"' .Voca::t('ADDED')). '</span>';
+                Alert::setFlash('success', '<span style="color: darkgreen">'. Voca::t('USER') . ' "' . $user->snp . '" ' .Voca::t('ADDED')). '</span>';
                 header('Location: ' . Site::$root . '/site/login');
                 return true;
             } else {

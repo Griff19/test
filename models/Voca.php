@@ -39,13 +39,16 @@ class Voca
             'ACCESS_DENI' => 'Wrong Login or Password',
             'CONFIRM_PASS_MATCH_PASS' => 'Confirm password must match the password',
             'CONTAIN_ONLY_LETTERS' => 'Full Name must contain only letters',
-            'INVALID_EMAIL' => 'Invalid value "Email"',
+            'INVALID_EMAIL' => 'Invalid "Email"',
             'ENTER_PASS' => 'Enter password',
             'PAGE_404' => '404 The requested page is not found',
             'USER' => 'User',
             'ADDED' => 'added successfully',
             'SR_ERROR' => '503 Server error',
             'DB_ERROR' => 'Error connecting to database. Contact your administrator.',
+            'PASS_TO_EASY' => 'The password is too simple, it is recommended to complicate it...',
+            'LOGIN_INVALID' => 'Invalid Login',
+            'FILL_SNP' => 'Please enter your full name',
 
         ];
     }
@@ -90,6 +93,9 @@ class Voca
             'ADDED' => 'успешно добавлен.<br/>Используйте свой логин и пароль чтобы войти в профиль.',
             'SR_ERROR' => '503 Ошибка сервера',
             'DB_ERROR' => 'Ошибка подключения к базе данных. Обратитесь к администратору.',
+            'PASS_TO_EASY' => 'Пароль слишком простой, рекомендуем усложнить его...',
+            'LOGIN_INVALID' => 'Логин содержит недопустимый символ',
+            'FILL_SNP' => 'Пожалуйста укажите ваше полное имя',
         ];
     }
 
