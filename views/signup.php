@@ -125,20 +125,20 @@ if (array_key_exists('user', $_SESSION)) {
         return true;
     }
 
-    function validMemo() {
-        var memo = document.getElementById('memo').value;
-
-        if (memo != "") {
-            var patt = /^[а-яёa-z0-9_ -.,]$/;
-
-            if (!patt.test(memo)) {
-                document.getElementById('err_memo').innerHTML = "Поле должно содержать только буквы цифры и пробелы";
-                return false;
-            }
-        }
-        document.getElementById('err_memo').innerHTML = "";
-        return true;
-    }
+//    function validMemo() {
+//        var memo = document.getElementById('memo').value;
+//
+//        if (memo != "") {
+//            var patt = /^[а-яёa-z0-9_ -.,]$/;
+//
+//            if (!patt.test(memo)) {
+//                document.getElementById('err_memo').innerHTML = "Поле должно содержать только буквы цифры и пробелы";
+//                return false;
+//            }
+//        }
+//        document.getElementById('err_memo').innerHTML = "";
+//        return true;
+//    }
 
     function validForm() {
         var no_error = true;

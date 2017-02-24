@@ -6,6 +6,11 @@
  */
 class Helper
 {
+    /**
+     * "Безопасная" строка
+     * @param $str
+     * @return string
+     */
     public static function safetyStr($str)
     {
         $s = trim($str);
@@ -17,7 +22,12 @@ class Helper
 
     /**
      * Определяем можно ли обращаться к классу через url
-     * @return array
+     * [
+     *  'className' => 'true' - класс и его функции доступны для вызова
+     *  'className' => ['method' => 'POST|GET'] - класс и его функции доступны только через указанный метод
+     * ]
+     *
+     * @return bool
      */
     public static function accessClass($class, $method)
     {
@@ -39,6 +49,6 @@ class Helper
         } else {
             return false;
         }
-
+        return false;
     }
 }

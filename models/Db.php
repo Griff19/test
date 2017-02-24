@@ -2,6 +2,8 @@
 
 /**
  * Class Db
+ * Класс работы с базой данных
+ *
  * @property mysqli $connection
  */
 
@@ -24,7 +26,6 @@ class Db
         } catch (Exception $e) {
             Site::error(Voca::t('SR_ERROR'), Voca::t('DB_ERROR'));
         }
-
     }
 
     /**
@@ -44,7 +45,7 @@ class Db
     }
 
     /**
-     * Пока используется для проверки уникальности логина
+     * Используется для проверки уникальности логина при вводе
      * @param $fields
      * @param $condition
      * @return array
@@ -61,25 +62,9 @@ class Db
         }
         return $arr;
     }
-    /**
-     * @return array|bool
-     */
-//    public function selectAll()
-//    {
-//        $sql = 'SELECT * FROM users';
-//        if (!$res = $this->connection->query($sql)){
-//            return false;
-//        }
-//        else {
-//            $arr = [];
-//            while ($user = $res->fetch_assoc()) {
-//                $arr[] = $user['username'];
-//            }
-//            return $arr;
-//        }
-//    }
 
     /**
+     * Авторизация пользователя, проверка логина и пароля
      * @param $login
      * @param $password
      * @return array|bool
@@ -106,6 +91,7 @@ class Db
 
 
     /**
+     * Добавление нового пользователя - результат работы формы
      * @param $model User
      * @return bool
      */
@@ -128,6 +114,7 @@ class Db
     }
 
     /**
+     * Поиск данных о пользователе для загрузки их в модель
      * @param $user_token
      * @return array
      */

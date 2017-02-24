@@ -2,6 +2,7 @@
 
 /**
  * Class User
+ * Основная модель работы с пользователем
  */
 class User
 {
@@ -89,6 +90,7 @@ class User
     }
 
     /**
+     * Авторизация пользователя
      * @param $login
      * @param $password
      */
@@ -108,15 +110,17 @@ class User
     }
 
     /**
-     *
+     * Выход
      */
     public static function logout()
     {
+
         session_destroy();
         //header('Location: '. Site::$root .'/site/index');
     }
 
     /**
+     * Загрузка картинки
      * @return bool|string
      */
     public function loadfile()
@@ -139,6 +143,7 @@ class User
     }
     /**
      * Регистрация нового пользователя
+     * Обработка данных формы регистрации view\signup.php
      */
     public function newUser()
     {
@@ -163,11 +168,13 @@ class User
             }
         }
         //Если валидация не прошла - возвращаемся в форму
+        //чтобы введенные дынные не сбросились полностью - передаем объект
         $_SESSION['user'] = serialize($user);
         header('Location: '. Site::$root .'/site/signup');
     }
 
     /**
+     * Сохраняем модель в базу
      * @return bool
      */
     public function save()
@@ -184,6 +191,7 @@ class User
     }
 
     /**
+     * Ижем данные в базе для заполнения модели
      * @param $user_token
      */
     public function find($user_token)

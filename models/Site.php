@@ -33,11 +33,16 @@ class Site
     }
 
     /**
-     *
+     * Авторизация пользователя.
+     * Уже авторизованного пользователя просто отправляем в index
      */
     public static function login()
     {
-        include_once __DIR__ . '/../views/login.php';
+        if ( empty($_SESSION['login']) or empty($_SESSION['id']) ) {
+            include_once __DIR__ . '/../views/login.php';
+        } else {
+            header('Location: '. Site::$root .'/site/index');
+        }
     }
 
     public function logout()
@@ -47,7 +52,8 @@ class Site
     }
 
     /**
-     *
+     * Вход в профиль. Если Сессия не содержит данных о пользователе то предлагаем
+     * пройти авторизацию
      */
     public static function profile()
     {
