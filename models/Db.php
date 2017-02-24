@@ -19,7 +19,12 @@ class Db
      */
     function __construct()
     {
-        $this->connect();
+        try {
+            $this->connect();
+        } catch (Exception $e) {
+            Site::error(Voca::t('SR_ERROR'), Voca::t('DB_ERROR'));
+        }
+
     }
 
     /**
@@ -48,7 +53,8 @@ class Db
     {
         $sql = "SELECT ". $fields ." FROM users WHERE " . $condition;
         $res = $this->connection->query($sql);
-
+        if (!$res)
+            return false;
         $arr = [];
         while ($row = $res->fetch_assoc()) {
             $arr[] = $row;
@@ -80,9 +86,16 @@ class Db
      */
     public function validUser($login, $password){
         $sql = "SELECT * FROM users WHERE login = ? AND pass = ?";
+
+
         $prepare = $this->connection->prepare($sql);
+        if (!$prepare){
+            return false;
+        }
+
         $prepare->bind_param('ss', $login, $password);
         $prepare->execute();
+
         $res = $prepare->get_result();
 
         $row = $res->fetch_assoc();
@@ -99,10 +112,12 @@ class Db
      */
     public function insert($model)
     {
-        $sql = "INSERT INTO users (login, pass, email, snp, memo, link_file) VALUES (?, ?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO users (login, user_token, pass, email, snp, memo, link_file) VALUES (?, ?, ?, ?, ?, ?, ?);";
         /** @var mysqli_stmt $prepare */
         $prepare = $this->connection->prepare($sql);
-        $prepare->bind_param('ssssss', $model->login, $model->password, $model->email, $model->snp, $model->memo, $model->file);
+        if (!$prepare)
+            return false;
+        $prepare->bind_param('sssssss', $model->login, $model->user_token, $model->password, $model->email, $model->snp, $model->memo, $model->file);
         $prepare->execute();
         if ($prepare->errno){
             echo print_r($prepare->error);
@@ -119,7 +134,7 @@ class Db
      */
     public function find($id)
     {
-        $sql = "SELECT * FROM users WHERE id = ?";
+        $sql = "SELECT * FROM users WHERE user_token = ?";
         $prepare = $this->connection->prepare($sql);
         $prepare->bind_param('i', $id);
         $prepare->execute();

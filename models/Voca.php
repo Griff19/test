@@ -44,6 +44,8 @@ class Voca
             'PAGE_404' => '404 The requested page is not found',
             'USER' => 'User',
             'ADDED' => 'added successfully',
+            'SR_ERROR' => '503 Server error',
+            'DB_ERROR' => 'Error connecting to database. Contact your administrator.',
 
         ];
     }
@@ -61,8 +63,8 @@ class Voca
             'HOME_PAGE' => 'Начальная страница',
             'SIGN_IN' => 'Войти в профиль',
             'ENTER_LOGIN_AND_PASSWORD' => 'Введите логин и пароль',
-            'REGISTER' => 'Зарегистрироваться',
-            'OR_YOU_CAN' => 'Или Вы можете',
+            'REGISTER' => 'Зарегистрируйтесь',
+            'OR_YOU_CAN' => 'Или',
             'IN_THE_SYSTEM' => 'в системе',
             'USR_LOGIN' => 'Логин',
             'USR_PASS' => 'Пароль',
@@ -85,7 +87,9 @@ class Voca
             'ENTER_PASS' => 'Введите пароль',
             'PAGE_404' => '404 Запрашиваемая страница не найдена',
             'USER' => 'Пользователь',
-            'ADDED' => 'успешно добавлен.',
+            'ADDED' => 'успешно добавлен.<br/>Используйте свой логин и пароль чтобы войти в профиль.',
+            'SR_ERROR' => '503 Ошибка сервера',
+            'DB_ERROR' => 'Ошибка подключения к базе данных. Обратитесь к администратору.',
         ];
     }
 

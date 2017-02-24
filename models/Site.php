@@ -57,7 +57,6 @@ class Site
         else {
             $user = new User();
             $user->find($_SESSION['id']);
-            $_SESSION['user'] = serialize($user);
 
             include_once __DIR__ . '/../views/profile.php';
         }
@@ -66,14 +65,14 @@ class Site
     /**
      *
      */
-    public function signup()
+    public static function signup()
     {
         include_once __DIR__ . '/../views/signup.php';
     }
 
-    public function _404()
+    public static function error($error, $message)
     {
-        include_once __DIR__ . '/../views/_404.php';
+        include_once __DIR__ . '/../views/error.php';
     }
 
     /**

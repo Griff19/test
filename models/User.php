@@ -6,6 +6,7 @@
 class User
 {
     public $id;
+    public $user_token;
     public $login;
     public $password;
     private $password2;
@@ -51,7 +52,7 @@ class User
         }
 
         if (empty($this->password))
-            $str_err .= 'Введите пароль <br/>';
+            $str_err .= Voca::t('ENTER_PASS').'<br/>';
         else
             $password = $this->password;
 
@@ -71,8 +72,10 @@ class User
 
         if (!empty($this->snp)) {
             $this->snp = Helper::safetyStr($this->snp);
-            if (!preg_match('/^[а-яёa-z ]+$/i', $this->snp))
+            $reg = '/^[^0-9]+$/i';
+            if (!preg_match($reg, $this->snp))
                 $str_err .= Voca::t('CONTAIN_ONLY_LETTERS'). '<br/>';
+
         }
 
         if ($str_err !== '') {
@@ -92,7 +95,7 @@ class User
         $user = $db->validUser($login, md5($password));
         if ($user) {
             $_SESSION['login'] = $user['login'];
-            $_SESSION['id'] = $user['id'];
+            $_SESSION['id'] = $user['user_token'];
             header('Location: '. Site::$root .'/site/profile');
         }
         else {
@@ -138,6 +141,7 @@ class User
     {
         $user = new User();
         $user->login = $_POST['login'];
+        $user->user_token = md5($user->login);
         $user->password = $_POST['password'];
         $user->password2 = $_POST['password2'];
         $user->email = $_POST['email'];
@@ -147,15 +151,17 @@ class User
         if ($user->validate()) {
             $user->loadfile();
             if ($user->save()) {
-                Alert::setFlash('success', '<span style="color: darkgreen">'. Voca::t('USER') . '"' . $user->snp . '"' .Voca::t('ADDED'));
-                return header('Location: ' . Site::$root . '/site/login');
+                Alert::setFlash('success', '<span style="color: darkgreen">'. Voca::t('USER') . '"' . $user->snp . '"' .Voca::t('ADDED')). '</span>';
+                header('Location: ' . Site::$root . '/site/login');
+                return true;
             } else {
+                Alert::setFlash('error', '<span style="color: darkred">'. Voca::t('DB_ERROR') . '</span>');
                 unlink(Site::$root . '/' .$user->file);
             }
         }
         //Если валидация не прошла - возвращаемся в форму
         $_SESSION['user'] = serialize($user);
-        return header('Location: '. Site::$root .'/site/signup');
+        header('Location: '. Site::$root .'/site/signup');
     }
 
     /**
@@ -169,17 +175,19 @@ class User
         if ($db->connect())
             if ($db->insert($this))
                 return true;
+
+
         return false;
     }
 
     /**
-     * @param $id
+     * @param $user_token
      */
-    public function find($id)
+    public function find($user_token)
     {
         $db = new Db();
         if ($db->connect())
-            if ($row = $db->find($id)) {
+            if ($row = $db->find($user_token)) {
 
                 $this->login = $row['login'];
                 $this->email = $row['email'];
@@ -188,5 +196,4 @@ class User
                 $this->memo = $row['memo'];
             }
     }
-
 }

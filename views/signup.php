@@ -10,7 +10,8 @@ if (array_key_exists('user', $_SESSION)) {
 ?>
 <div>
 <h2><?= Voca::t('FILL_OUT_FORM')?></h2>
-<form enctype="multipart/form-data" action="<?= Site::$root?>/user/newUser" method="post" >
+<form enctype="multipart/form-data" action="<?= Site::$root?>/user/newUser" method="post"
+      onsubmit="return validForm();">
     <label for="login"> <?= Voca::t('USR_LOGIN')?>: </label><br/>
     <input id="login" name="login" type="text" value="<?= isset($user) ? $user->login : '' ?>" size="20" maxlength="255">
     <div id="err_log" style="color: darkred"></div>
@@ -43,9 +44,14 @@ if (array_key_exists('user', $_SESSION)) {
 
 <script>
     function validPassword(p) {
+
         var pass1 = document.getElementById('password').value;
         var pass2 = document.getElementById('password2').value;
-        //alert(pass1 + " " +pass2);
+
+        if (pass1 == "") {
+            document.getElementById('err_pass').innerHTML = "<?= Voca::t('ENTER_PASS')?>";
+            return false;
+        }
         if ((pass1 != "" && p == 2) || (p == 1 && pass2 != ""))
             if (pass1 != pass2) {
                 document.getElementById('err_pass').innerHTML = "<?= Voca::t('CONFIRM_PASS_MATCH_PASS')?>";
@@ -65,6 +71,33 @@ if (array_key_exists('user', $_SESSION)) {
         }
         document.getElementById('err_snp').innerHTML = "";
         return true;
+    }
+
+    function validForm() {
+        var no_error = true;
+
+        var login = document.getElementById('login').value;
+        var pass1 = document.getElementById('password').value;
+        var pass2 = document.getElementById('password2').value;
+
+        if (login == "") {
+            document.getElementById('err_log').innerHTML = '<?= Voca::t('FILL_FIELD_LOGIN')?>';
+            no_error = false;
+        }
+        if (pass2 == "") {
+            document.getElementById('err_pass').innerHTML = "<?= Voca::t('CONFIRM_PASS')?>";
+            no_error = false;
+        }
+        if (pass1 == "") {
+            document.getElementById('err_pass').innerHTML = "<?= Voca::t('ENTER_PASS')?>";
+            no_error = false;
+        }
+        if (pass1 == "" && pass2 == "") {
+            document.getElementById('err_pass').innerHTML = "<?= Voca::t('ENTER_PASS')?>. <?= Voca::t('CONFIRM_PASS')?>";
+            no_error = false;
+        }
+
+        return no_error;
     }
 
 </script>

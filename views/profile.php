@@ -3,10 +3,6 @@
  * @var $user User
  */
 
-if (array_key_exists('user', $_SESSION)) {
-    $user = unserialize($_SESSION['user']);
-    unset($_SESSION['user']);
-}
 ?>
 <div>
 <h3><?= Voca::t('PAGE_PROFILE')?> "<?= $user->snp?>" </h3>

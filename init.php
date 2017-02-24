@@ -15,6 +15,7 @@ if (trim($s) == "y") {
 
     $c->query("CREATE TABLE `users` (
           `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+          `user_token` varchar(255) NOT NULL, 
           `login` varchar(255) NOT NULL,
           `pass` varchar(255) NOT NULL,
           `email` varchar(255) DEFAULT NULL,
