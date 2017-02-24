@@ -49,6 +49,7 @@ class Voca
             'PASS_TO_EASY' => 'The password is too simple, it is recommended to complicate it...',
             'LOGIN_INVALID' => 'Invalid Login',
             'FILL_SNP' => 'Please enter your full name',
+            'FOR_LOOK_INFORMATION' => 'To view the information You need',
 
         ];
     }
@@ -96,6 +97,7 @@ class Voca
             'PASS_TO_EASY' => 'Пароль слишком простой, рекомендуем усложнить его...',
             'LOGIN_INVALID' => 'Логин содержит недопустимый символ',
             'FILL_SNP' => 'Пожалуйста укажите ваше полное имя',
+            'FOR_LOOK_INFORMATION' => 'Для просмотра информации Вам необходимо',
         ];
     }
 
