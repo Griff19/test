@@ -11,7 +11,10 @@ if (trim($s) == "y") {
 
     echo "Create Users table...\n";
     $db = new Db();
-    $c = $db->connect();
+    if ($db->errors){
+        echo 'DB Error!..';
+        exit();
+    }
 
     $c->query("
         CREATE TABLE `users` (
