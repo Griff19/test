@@ -43,7 +43,7 @@ class Voca
             'ENTER_PASS' => 'Enter password',
             'PAGE_404' => '404 The requested page is not found',
             'USER' => 'User',
-            'ADDED' => 'added successfully',
+            'ADDED' => 'added successfully.<br/>Use your username and password to access the profile.',
             'SR_ERROR' => '503 Server error',
             'DB_ERROR' => 'Error connecting to database. Contact your administrator.',
             'PASS_TO_EASY' => 'The password is too simple, it is recommended to complicate it...',
