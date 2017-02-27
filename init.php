@@ -9,6 +9,10 @@ if (trim($s) == "y") {
     echo "Creating the necessary directories...\n";
     mkdir(__DIR__ . '/img/');
 
+    if (!file_exists('/config/local.php')) {
+        $f = fopen('/config/local.php', 'w');
+        fwrite($f, "<?php\nreturn [\n'db' => [\n'host' => '',\n'user' => '',\n'pass' => '',\n'base' => '',\n]\n];");
+    }
     echo "Create Users table...\n";
     $db = new Db();
     if ($db->errors){
@@ -16,7 +20,7 @@ if (trim($s) == "y") {
         exit();
     }
 
-    $c->query("
+    $db->connection->query("
         CREATE TABLE `users` (
             `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
             `user_token` varchar(255) NOT NULL,
