@@ -9,10 +9,10 @@
 
 class Db
 {
-    public $host = '127.0.0.1';
-    public $user = 'root';
-    public $pass = '';
-    public $base = 'test';
+    public $host = 'localhost';
+    public $user = 'fr3121_test';
+    public $pass = 'weih1234';
+    public $base = 'fr3121_test';
 
     private $connection;
 

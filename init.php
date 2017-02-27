@@ -13,22 +13,23 @@ if (trim($s) == "y") {
     $db = new Db();
     $c = $db->connect();
 
-    $c->query("CREATE TABLE `users` (
-          `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-          `user_token` varchar(255) NOT NULL, 
-          `login` varchar(255) NOT NULL,
-          `pass` varchar(255) NOT NULL,
-          `email` varchar(255) DEFAULT NULL,
-          `snp` varchar(255) DEFAULT NULL,
-          `link_file` varchar(255) DEFAULT NULL,
-          `memo` text,
-          PRIMARY KEY (`id`),
-          UNIQUE KEY `users_login_uindex` (`login`)
+    $c->query("
+        CREATE TABLE `users` (
+            `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+            `user_token` varchar(255) NOT NULL,
+            `login` varchar(255) NOT NULL,
+            `pass` varchar(255) NOT NULL,
+            `email` varchar(255) DEFAULT NULL,
+            `snp` varchar(255) NOT NULL,
+            `link_file` varchar(255) DEFAULT NULL,
+            `memo` text,
+            PRIMARY KEY (`id`),
+            UNIQUE KEY `users_login_uindex` (`login`),
+            KEY `users_user_token_index` (`user_token`)
         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
     ");
 
     echo 'Done.' . "\n";
-}
-else {
+} else {
     echo 'Action canceled by the user.';
 }

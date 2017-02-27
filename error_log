@@ -1,0 +1,30 @@
+[27-Feb-2017 19:52:32 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::header() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 24
+[27-Feb-2017 19:52:32 Asia/Novosibirsk] PHP Notice:  Undefined offset: 2 in /home/fr3121/public_html/WHITEBOAT.RU/test/views/header.php on line 26
+[27-Feb-2017 19:52:32 Asia/Novosibirsk] PHP Notice:  Undefined offset: 1 in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 27
+[27-Feb-2017 19:52:32 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::footer() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 38
+[27-Feb-2017 19:52:32 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::header() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 24
+[27-Feb-2017 19:52:32 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::footer() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 38
+[27-Feb-2017 19:52:39 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::header() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 24
+[27-Feb-2017 19:52:39 Asia/Novosibirsk] PHP Strict Standards:  call_user_func_array() expects parameter 1 to be a valid callback, non-static method Site::setlang() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 29
+[27-Feb-2017 19:52:39 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::footer() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 38
+[27-Feb-2017 19:52:39 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::header() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 24
+[27-Feb-2017 19:52:39 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::footer() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 38
+[27-Feb-2017 20:08:58 Asia/Novosibirsk] PHP Warning:  mkdir(): File exists in /home/fr3121/public_html/WHITEBOAT.RU/test/init.php on line 10
+[27-Feb-2017 20:09:06 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::header() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 24
+[27-Feb-2017 20:09:06 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::footer() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 38
+[27-Feb-2017 20:09:08 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::header() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 24
+[27-Feb-2017 20:09:08 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::footer() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 38
+[27-Feb-2017 20:09:08 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::header() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 24
+[27-Feb-2017 20:09:08 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::footer() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 38
+[27-Feb-2017 20:09:18 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::header() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 24
+[27-Feb-2017 20:09:18 Asia/Novosibirsk] PHP Strict Standards:  call_user_func_array() expects parameter 1 to be a valid callback, non-static method User::login() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 29
+[27-Feb-2017 20:09:18 Asia/Novosibirsk] PHP Fatal error:  Call to undefined method mysqli_stmt::get_result() in /home/fr3121/public_html/WHITEBOAT.RU/test/models/Db.php on line 83
+[27-Feb-2017 20:09:30 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::header() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 24
+[27-Feb-2017 20:09:30 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::footer() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 38
+[27-Feb-2017 20:09:32 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::header() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 24
+[27-Feb-2017 20:09:32 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::footer() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 38
+[27-Feb-2017 20:09:32 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::header() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 24
+[27-Feb-2017 20:09:32 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::footer() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 38
+[27-Feb-2017 20:09:49 Asia/Novosibirsk] PHP Strict Standards:  Non-static method Site::header() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 24
+[27-Feb-2017 20:09:49 Asia/Novosibirsk] PHP Strict Standards:  call_user_func_array() expects parameter 1 to be a valid callback, non-static method User::login() should not be called statically in /home/fr3121/public_html/WHITEBOAT.RU/test/index.php on line 29
+[27-Feb-2017 20:09:50 Asia/Novosibirsk] PHP Fatal error:  Call to undefined method mysqli_stmt::get_result() in /home/fr3121/public_html/WHITEBOAT.RU/test/models/Db.php on line 83
