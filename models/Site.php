@@ -11,7 +11,7 @@ class Site
     /**
      *
      */
-    public function header()
+    public static function header()
     {
         include_once __DIR__ . '/../views/header.php';
     }
@@ -19,7 +19,7 @@ class Site
     /**
      *
      */
-    public function footer()
+    public static function footer()
     {
         include_once __DIR__ . '/../views/footer.php';
     }
@@ -45,7 +45,7 @@ class Site
         }
     }
 
-    public function logout()
+    public static function logout()
     {
         User::logout();
         header('Location: '. Site::$root .'/site/index');
@@ -87,7 +87,7 @@ class Site
     /**
      * @param $target
      */
-    public function setlang($target)
+    public static function setlang($target)
     {
         Voca::setLang();
         header('Location: '. Site::$root .'/site/' . $target);

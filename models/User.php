@@ -99,7 +99,7 @@ class User
      * @param $password
      * @return bool
      */
-    public function login($login, $password)
+    public static function login($login, $password)
     {
 
         $db = new Db();
