@@ -4,7 +4,7 @@
  * Class Db
  * Класс работы с базой данных
  *
- * @property mysqli $connection
+ * @property PDO $connection
  */
 
 class Db
@@ -32,14 +32,14 @@ class Db
         $this->base = $config['db']['base'];
         //$this->port = $config['db']['port'];
 
-        mysqli_report(MYSQLI_REPORT_STRICT);
         try {
-            $connect = new mysqli($this->host, $this->user, $this->pass, $this->base);
-            $connect->set_charset("utf8");
+            //$connect = new mysqli($this->host, $this->user, $this->pass, $this->base);
+            $connect = new PDO('mysql:host='.$this->host.';dbname='.$this->base, $this->user, $this->pass);
+            $this->connection = $connect;
         } catch (Exception $e){
-             $this->errors = $e;
+             $this->errors = $e->getMessage();
         }
-        $this->connection = $connect;
+
     }
 
     /**
@@ -59,14 +59,16 @@ class Db
     public function select($fields, $condition)
     {
         $sql = "SELECT ". $fields ." FROM users WHERE " . $condition;
-        $res = $this->connection->query($sql);
-        if (!$res)
-            return false;
+        $rows = $this->connection->query($sql);
         $arr = [];
-        while ($row = $res->fetch_assoc()) {
+        foreach ($rows as $row) {
             $arr[] = $row;
         }
-        return $arr;
+
+        if (!$arr)
+            return false;
+        else
+            return $arr;
     }
 
     /**
@@ -76,24 +78,20 @@ class Db
      * @return array|bool
      */
     public function validUser($login, $password){
-        ini_set('mysqlnd.collect_statistics', 'On');
-        ini_set('mysqlnd.collect_memory_statistics', 'On');
-
-        $sql = "SELECT * FROM users WHERE login = ? AND pass = ?";
+        
+        $sql = "SELECT * FROM users WHERE login = :login AND pass = :pass";
 
         $prepare = $this->connection->prepare($sql);
         if (!$prepare){
             return false;
         }
 
-        $prepare->bind_param('ss', $login, $password);
-        $prepare->execute();
+        $prepare->execute(['login' => $login, 'pass' => $password]);
 
-        $res = $prepare->get_result();
+        $res = $prepare->fetch(PDO::FETCH_LAZY);
 
-        $row = $res->fetch_assoc();
-        if ($row)
-            return $row;
+        if ($res)
+            return $res;
         else
             return false;
     }
@@ -107,17 +105,16 @@ class Db
     public function insert($model)
     {
         $sql = "INSERT INTO users (login, user_token, pass, email, snp, memo, link_file) VALUES (?, ?, ?, ?, ?, ?, ?);";
-        /** @var mysqli_stmt $prepare */
+
         $prepare = $this->connection->prepare($sql);
         if (!$prepare)
             return false;
-        $prepare->bind_param('sssssss', $model->login, $model->user_token, $model->password, $model->email, $model->snp, $model->memo, $model->file);
-        $prepare->execute();
-        if ($prepare->errno){
-            echo print_r($prepare->error);
+        $prepare->execute([$model->login, $model->user_token, $model->password, $model->email,
+            $model->snp, $model->memo, $model->file]);
+        if ($prepare->errorCode()){
+            echo print_r($prepare->errorInfo());
         }
-        $prepare->close();
-        $this->connection->close();
+        $prepare = null;
 
         return true;
     }
@@ -131,11 +128,10 @@ class Db
     {
         $sql = "SELECT * FROM users WHERE user_token = ?";
         $prepare = $this->connection->prepare($sql);
-        $prepare->bind_param('s', $user_token);
-        $prepare->execute();
-        $result = $prepare->get_result();
 
-        $row = $result->fetch_assoc();
-        return $row;
+        $prepare->execute([$user_token]);
+        $result = $prepare->fetch(PDO::FETCH_LAZY);
+
+        return $result;
     }
 }
