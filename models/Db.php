@@ -76,6 +76,9 @@ class Db
      * @return array|bool
      */
     public function validUser($login, $password){
+        ini_set('mysqlnd.collect_statistics', 'On');
+        ini_set('mysqlnd.collect_memory_statistics', 'On');
+
         $sql = "SELECT * FROM users WHERE login = ? AND pass = ?";
 
         $prepare = $this->connection->prepare($sql);
