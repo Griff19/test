@@ -13,13 +13,13 @@ if (trim($s) == "y") {
         $f = fopen(__DIR__ . '/config/local.php', 'w');
         fwrite($f, '<?php');
         fclose($f);
-        echo "Please specify the settings for connecting to the database in the conf/local.php file. See README.md\n";
+        echo "Please specify the settings for connecting to the database in the config/local.php file. See README.md\n";
         exit();
     }
     echo "Create Users table...\n";
     $db = new Db();
     if ($db->errors){
-        echo 'DB Error!..';
+        echo "DB Error!..\n";
         exit();
     }
 

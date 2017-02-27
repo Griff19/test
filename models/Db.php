@@ -13,9 +13,10 @@ class Db
     public $user;
     public $pass;
     public $base;
+    public $port = '3306';
 
     public $errors;
-    private $connection;
+    public $connection;
 
 
     /**
@@ -29,10 +30,11 @@ class Db
         $this->user = $config['db']['host'];
         $this->pass = $config['db']['pass'];
         $this->base = $config['db']['base'];
+        $this->port = $config['db']['port'];
 
         mysqli_report(MYSQLI_REPORT_STRICT);
         try {
-            $connect = new mysqli($this->host, $this->user, $this->pass, $this->base);
+            $connect = new mysqli($this->host, $this->user, $this->pass, $this->base, $this->port);
             $connect->set_charset("utf-8");
         } catch (Exception $e){
              $this->errors = $e;
