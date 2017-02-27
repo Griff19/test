@@ -9,11 +9,11 @@ if (trim($s) == "y") {
     echo "Creating the necessary directories...\n";
     mkdir(__DIR__ . '/img/');
 
-    if (!file_exists('/config/local.php')) {
-        $f = fopen('/config/local.php', 'w');
+    if (!file_exists(__DIR__ . '/config/local.php')) {
+        $f = fopen(__DIR__ . '/config/local.php', 'w');
         fwrite($f, '<?php');
         fclose($f);
-        echo 'Please specify the settings for connecting to the database in the conf/local.php file. See README.md';
+        echo "Please specify the settings for connecting to the database in the conf/local.php file. See README.md\n";
         exit();
     }
     echo "Create Users table...\n";
