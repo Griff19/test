@@ -10,7 +10,7 @@
 <img width="200px" src="../<?= $user->file ?>">
 <p>
     <?= Voca::t('YOUR_LOGIN')?>: <?= $user->login ?><br/>
-    <?= Voca::t('YOUR_PASS')?>: <?= $user->email ?><br/>
+    <?= Voca::t('YOUR_MAIL')?>: <?= $user->email ?><br/>
     <?= Voca::t('ADD_INFO')?>: <?= $user->memo ?><br/>
 </p>
 </div>
