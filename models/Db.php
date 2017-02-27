@@ -27,7 +27,7 @@ class Db
         $config = require (__DIR__ . '/../config/local.php');
 
         $this->host = $config['db']['host'];
-        $this->user = $config['db']['host'];
+        $this->user = $config['db']['user'];
         $this->pass = $config['db']['pass'];
         $this->base = $config['db']['base'];
         $this->port = $config['db']['port'];
