@@ -23,21 +23,20 @@ if (trim($s) == "y") {
         exit();
     }
 
-    $db->connection->query("
-        CREATE TABLE `users` (
-            `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-            `user_token` varchar(255) NOT NULL,
-            `login` varchar(255) NOT NULL,
-            `pass` varchar(255) NOT NULL,
-            `email` varchar(255) DEFAULT NULL,
-            `snp` varchar(255) NOT NULL,
-            `link_file` varchar(255) DEFAULT NULL,
-            `memo` text,
-            PRIMARY KEY (`id`),
-            UNIQUE KEY `users_login_uindex` (`login`),
-            KEY `users_user_token_index` (`user_token`)
-        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf-8
-    ");
+    $db->connection->query("CREATE TABLE IF NOT EXISTS `users` (
+          `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+          `user_token` varchar(255) NOT NULL,
+          `login` varchar(255) NOT NULL,
+          `pass` varchar(255) NOT NULL,
+          `email` varchar(255) DEFAULT NULL,
+          `snp` varchar(255) NOT NULL,
+          `link_file` varchar(255) DEFAULT NULL,
+          `memo` text,
+          PRIMARY KEY (`id`),
+          UNIQUE KEY `id` (`id`),
+          UNIQUE KEY `login` (`login`),
+          KEY `user_token` (`user_token`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;");
 
     echo 'Done.' . "\n";
 } else {
