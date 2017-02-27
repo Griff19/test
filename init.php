@@ -11,7 +11,10 @@ if (trim($s) == "y") {
 
     if (!file_exists('/config/local.php')) {
         $f = fopen('/config/local.php', 'w');
-        fwrite($f, "<?php\nreturn [\n'db' => [\n'host' => '',\n'user' => '',\n'pass' => '',\n'base' => '',\n]\n];");
+        fwrite($f, '<?php');
+        fclose($f);
+        echo 'Please specify the settings for connecting to the database in the conf/local.php file. See README.md';
+        exit();
     }
     echo "Create Users table...\n";
     $db = new Db();
