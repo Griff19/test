@@ -6,7 +6,7 @@
  */
 class Site
 {
-    public static $root = '/test';
+    public static $root;
 
     /**
      *
@@ -76,8 +76,11 @@ class Site
         include_once __DIR__ . '/../views/signup.php';
     }
 
-    public static function error($error, $message)
+    public static function error($error = '', $message = '')
     {
+        if (empty($error)) {
+            $error = Voca::t('PAGE_404');
+        }
         include_once __DIR__ . '/../views/error.php';
     }
 
@@ -90,3 +93,5 @@ class Site
         header('Location: '. Site::$root .'/site/' . $target);
     }
 }
+$config = require __DIR__ . '/../config/local.php';
+Site::$root = $config['site']['root'];

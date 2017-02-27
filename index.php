@@ -18,13 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $pars_url = parse_url(trim($_SERVER['REQUEST_URI'], '/'));
 $route = explode('/', $pars_url['path']);
 if (!isset($route[1]) || !isset($route[2])) {
-    header('Location: '. Site::$root. '/site/index');
+//if (!isset($route[2])) {
+   header('Location: '. Site::$root. '/site/index');
 }
 
 Site::header();
 Alert::getFlash();
 
-if (Helper::accessClass($route[1], $_SERVER['REQUEST_METHOD'])) {
+if (Helper::accessClass($route, $_SERVER['REQUEST_METHOD'])) {
     if ($params) {
         call_user_func_array([$route[1], $route[2]], $params);
     } else {

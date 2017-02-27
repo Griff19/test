@@ -6,7 +6,7 @@ $route = explode('/', $pars_url['path']);
 <!DOCTYPE html>
 <html lang="ru-Ru">
 <head>
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
     <meta charset="utf-8">
     <title> Тестовое задание </title>

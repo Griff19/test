@@ -24,7 +24,12 @@ class User
     public function validLogin()
     {
         $db = new Db();
-        //$this->connect();
+        if ($db->errors){
+            header('Location: '. Site::$root .'/site/error?error='. Voca::t('SR_ERROR'). '&message=' . Voca::t('DB_ERROR'));
+            //header('Refresh: 0; '. Site::$root .'/site/error?error='. Voca::t('SR_ERROR'). '&message=' . Voca::t('DB_ERROR'));
+            //Site::error(Voca::t('SR_ERROR'), Voca::t('DB_ERROR'));
+            //return false;
+        }
         $rows = $db->select('id, login', "login = '". $this->login ."'");
         if ($rows)
             return false;
@@ -90,13 +95,18 @@ class User
     }
 
     /**
-     * Авторизация пользователя
      * @param $login
      * @param $password
+     * @return bool
      */
     public function login($login, $password)
     {
+
         $db = new Db();
+        if ($db->errors){
+            Site::error(Voca::t('SR_ERROR'), Voca::t('DB_ERROR'));
+            return false;
+        }
         $user = $db->validUser($login, md5($password));
         if ($user) {
             $_SESSION['login'] = $user['login'];
@@ -182,9 +192,12 @@ class User
         $this->password = md5($this->password);
 
         $db = new Db();
-        if ($db->connect())
-            if ($db->insert($this))
-                return true;
+        if ($db->errors){
+            Site::error(Voca::t('SR_ERROR'), Voca::t('DB_ERROR'));
+            return false;
+        }
+        if ($db->insert($this))
+            return true;
 
 
         return false;

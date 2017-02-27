@@ -29,8 +29,10 @@ class Helper
      *
      * @return bool
      */
-    public static function accessClass($class, $method)
+    public static function accessClass($route, $method)
     {
+        $class = $route[1];
+
         $classes = [
             'site' => 'true',
             'user' => ['method' => 'POST'],

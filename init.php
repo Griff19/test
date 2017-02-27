@@ -26,7 +26,7 @@ if (trim($s) == "y") {
             PRIMARY KEY (`id`),
             UNIQUE KEY `users_login_uindex` (`login`),
             KEY `users_user_token_index` (`user_token`)
-        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf-8
     ");
 
     echo 'Done.' . "\n";

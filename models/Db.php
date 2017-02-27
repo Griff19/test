@@ -9,39 +9,43 @@
 
 class Db
 {
-    public $host = 'localhost';
-    public $user = 'fr3121_test';
-    public $pass = 'weih1234';
-    public $base = 'fr3121_test';
+    public $host;
+    public $user;
+    public $pass;
+    public $base;
 
+    public $errors;
     private $connection;
+
 
     /**
      * Db constructor.
      */
     function __construct()
     {
+        $config = require (__DIR__ . '/../config/local.php');
+
+        $this->host = $config['db']['host'];
+        $this->user = $config['db']['host'];
+        $this->pass = $config['db']['pass'];
+        $this->base = $config['db']['base'];
+
+        mysqli_report(MYSQLI_REPORT_STRICT);
         try {
-            $this->connect();
-        } catch (Exception $e) {
-            Site::error(Voca::t('SR_ERROR'), Voca::t('DB_ERROR'));
+            $connect = new mysqli($this->host, $this->user, $this->pass, $this->base);
+            $connect->set_charset("utf-8");
+        } catch (Exception $e){
+             $this->errors = $e;
         }
+        $this->connection = $connect;
     }
 
     /**
-     * @return bool|mysqli
+     * @return mysqli
+     * @throws Exception
      */
     public function connect(){
-        $connect = new mysqli($this->host, $this->user, $this->pass, $this->base);
-        $connect->set_charset("utf8");
 
-        if ($connect->connect_errno) {
-            return false;
-        }
-        else {
-            $this->connection = $connect;
-            return $connect;
-        }
     }
 
     /**
