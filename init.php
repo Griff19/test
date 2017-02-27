@@ -19,7 +19,7 @@ if (trim($s) == "y") {
     echo "Create Users table...\n";
     $db = new Db();
     if ($db->errors){
-        echo "DB Error!..\n";
+        echo "DB Error!..\n" . $db->errors;
         exit();
     }
 
