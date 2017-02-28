@@ -179,7 +179,7 @@ class User
         }
         //Если валидация не прошла - возвращаемся в форму
         //чтобы введенные дынные не сбросились полностью - передаем объект
-        $_SESSION['user'] = serialize($user);
+        $GLOBALS['user'] = serialize($user);
         header('Location: '. Site::$root .'/site/signup');
     }
 

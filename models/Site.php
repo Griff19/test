@@ -76,6 +76,10 @@ class Site
         include_once __DIR__ . '/../views/signup.php';
     }
 
+    /**
+     * @param string $error
+     * @param string $message
+     */
     public static function error($error = '', $message = '')
     {
         if (empty($error)) {

@@ -3,9 +3,9 @@
  * @var $user User
  */
 
-if (array_key_exists('user', $_SESSION)) {
-    $user = unserialize($_SESSION['user']);
-    unset($_SESSION['user']);
+if (array_key_exists('user', $GLOBALS)) {
+    $user = unserialize($GLOBALS['user']);
+    unset($GLOBALS['user']);
 }
 ?>
 <div>
