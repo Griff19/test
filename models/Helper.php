@@ -32,7 +32,7 @@ class Helper
 	 */
     public static function accessClass($route, $method)
     {
-        $class = $route[0];
+        $class = $route[Site::$class];
 
         $classes = [
             'site' => 'true',
@@ -66,8 +66,8 @@ class Helper
 			'site' => ['validlogin']
 		];
 		
-		if (array_key_exists($route[0], $isAjax)){
-			if (in_array($route[1], $isAjax[$route[0]])) {
+		if (array_key_exists($route[Site::$class], $isAjax)){
+			if (in_array($route[Site::$func], $isAjax[$route[Site::$class]])) {
 				return true;
 			}
 		}

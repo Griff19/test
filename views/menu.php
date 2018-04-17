@@ -6,4 +6,4 @@ $route = explode('/', $pars_url['path']);
 <?php if(isset($_SESSION['login']) && isset($_SESSION['id'])) { ?>
 	<a href="<?= Site::$root?>/site/logout">[ <?= Voca::t('LINK_EXIT')?> ]</a>
 <?php } ?>
-<a href="<?= Site::$root?>/site/setlang?target=<?= $route[1]?>">[<?= Voca::t('CH_LANGUAGE') ?>]</a>
+<a href="<?= Site::$root?>/site/setlang?target=<?= $route[Site::$func]?>">[<?= Voca::t('CH_LANGUAGE') ?>]</a>

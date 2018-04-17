@@ -9,6 +9,8 @@ class Site
     public static $root;
     public static $ajax;
     public static $template;
+    public static $class = 0;
+    public static $func = 1;
 	
 	/**
 	 * @param $route
@@ -18,9 +20,9 @@ class Site
 	{
 		if (Helper::accessClass($route, $_SERVER['REQUEST_METHOD'])) {
 			if ($params) {
-				call_user_func_array([$route[0], $route[1]], $params);
+				call_user_func_array([$route[Site::$class], $route[Site::$func]], $params);
 			} else {
-				call_user_func([$route[0], $route[1]]);
+				call_user_func([$route[Site::$class], $route[Site::$func]]);
 			}
 		} else {
 			$_SESSION['error_url'] = $_SERVER['REQUEST_URI'];
@@ -144,3 +146,7 @@ $config = require __DIR__ . '/../config/local.php';
 $param = require __DIR__ . '/../config/param.php';
 Site::$root = $config['site']['root'];
 Site::$template = $param['template'];
+if (Site::$root){
+	Site::$class = 1;
+	Site::$func = 2;
+}

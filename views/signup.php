@@ -45,7 +45,6 @@ if (array_key_exists('user', $GLOBALS)) {
     <textarea id="memo" name="memo" rows="3" cols="40"></textarea>
     <div id="err_memo" class="error"></div>
     <br/>
-    <br/>
     <input type="submit" value="<?= Voca::t('SAVE')?>"><br/>
 </form>
 </div>
@@ -64,7 +63,7 @@ if (array_key_exists('user', $GLOBALS)) {
             $.post('<?= Site::$root ?>/site/validlogin', {login: login}, function(r){
                 let obj = JSON.parse(r);
                 if (obj.res === false) {
-                    document.getElementById('err_log').innerHTML = login + '<?= Voca::t('NAME_USED')?>';
+                    document.getElementById('err_log').innerHTML = login + ' <?= Voca::t('NAME_USED')?>';
                     return false
                 }
             })
