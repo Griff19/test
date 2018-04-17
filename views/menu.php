@@ -1,4 +1,8 @@
 <?php
+/**
+ * Файл основного меню.
+ * И данные и представление пока "вперемешку" :(
+ */
 $pars_url = parse_url(trim($_SERVER['REQUEST_URI'], '/'));
 $route = explode('/', $pars_url['path']);
 ?>

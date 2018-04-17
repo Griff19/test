@@ -13,6 +13,7 @@ class Site
     public static $func = 1;
 	
 	/**
+	 *
 	 * @param $route
 	 * @param $params
 	 */
@@ -97,7 +98,7 @@ class Site
 
     /**
      * Вход в профиль. Если Сессия не содержит данных о пользователе то предлагаем
-     * пройти авторизацию
+     * пройти авторизацию...
      */
     public static function profile()
     {

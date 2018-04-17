@@ -7,6 +7,7 @@
 class Voca
 {
     /**
+	 * Хранит и предоставляет строки на английском языке
      * @return array
      */
     public static function arrayEn()
@@ -56,6 +57,7 @@ class Voca
     }
 
     /**
+	 * Хранит и предоставляет строки на русском языке
      * @return array
      */
     public static function arrayRu()
@@ -104,7 +106,7 @@ class Voca
     }
 
     /**
-     * Выводим надписи на нужном языке
+     * Выводим надписи на нужном языке. Текущий язык хранится в сессии.
      * @param $cons
      * @return mixed
      */
