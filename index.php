@@ -17,9 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 $pars_url = parse_url(trim($_SERVER['REQUEST_URI'], '/'));
 $route = explode('/', $pars_url['path']);
-//var_dump($route); die;
+
 if (!isset($route[Site::$class]) || !isset($route[Site::$func])) {
-//if (!isset($route[2])) {
    header('Location: '. Site::$root. '/site/index');
 }
 

@@ -14,8 +14,7 @@ class Db
     public $user;
     public $pass;
     public $base;
-    //public $port = '3306';
-
+    
     public $errors;
     public $connection;
 
@@ -31,10 +30,8 @@ class Db
         $this->user = $config['db']['user'];
         $this->pass = $config['db']['pass'];
         $this->base = $config['db']['base'];
-        //$this->port = $config['db']['port'];
-
+        
         try {
-            //$connect = new mysqli($this->host, $this->user, $this->pass, $this->base);
             $connect = new PDO('mysql:host='.$this->host.';dbname='.$this->base, $this->user, $this->pass);
             $this->connection = $connect;
         } catch (Exception $e){
@@ -58,7 +55,7 @@ class Db
     public function checkLogin($login)
     {
         $sql = "SELECT id FROM users WHERE login = :login";
-        //$sql = "SELECT ". $fields ." FROM users WHERE " . $condition;
+        
 		$prepare = $this->connection->prepare($sql);
 		if (!$prepare) return false;
 		
