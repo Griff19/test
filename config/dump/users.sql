@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `fr3121_test`
+-- База данных: `test`
 --
 
 -- --------------------------------------------------------
@@ -36,9 +36,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `link_file` varchar(255) DEFAULT NULL,
   `memo` text,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`),
-  UNIQUE KEY `login` (`login`),
-  KEY `user_token` (`user_token`)
+  UNIQUE KEY `login` (`login`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 

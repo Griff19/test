@@ -25,4 +25,4 @@ if (!isset($route[1]) || !isset($route[2])) {
 if (Helper::isAjax($route)) {
 	Site::content($route, $params);
 } else
-	require_once __DIR__ . '/template/default/index.php';
+	require_once __DIR__ . Site::$template . '/index.php';

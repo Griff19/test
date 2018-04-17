@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+}
+
+.container {
+    padding: 1px 15px 1px 15px;
+}
+
+.title {
+    margin: 0;
+    color: aliceblue;
+}
+
+.error {
+    font-size: smaller;
+    color: darkred;
+}
+
+.header {
+    background-color: darkslateblue;
+    height: 50px;
+    color: aliceblue;
+}
+
+
+.content {
+    min-height: 300px;
+    margin-bottom: 30px;
+}
+
+.menu {
+    background-color: aliceblue;
+    height: 30px
+}
+
+.footer {
+    background-color: darkslateblue;
+    height: 160px;
+    color: aliceblue;
+}
+
+.footer a {
+    color: aliceblue;
+}
+
+h1, h2, h3 {
+    color: darkslateblue;
+}
+
+

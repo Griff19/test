@@ -8,6 +8,7 @@ class Site
 {
     public static $root;
     public static $ajax;
+    public static $template;
 	
 	/**
 	 * @param $route
@@ -25,6 +26,14 @@ class Site
 			$_SESSION['error_url'] = $_SERVER['REQUEST_URI'];
 			Site::error(Voca::t('PAGE_404'), $_SERVER['REQUEST_URI']);
 		}
+	}
+	
+	/**
+	 *
+	 */
+	public static function menu()
+	{
+		include_once __DIR__ . '/../views/menu.php';
 	}
 	
     /**
@@ -132,4 +141,6 @@ class Site
 }
 
 $config = require __DIR__ . '/../config/local.php';
+$param = require __DIR__ . '/../config/param.php';
 Site::$root = $config['site']['root'];
+Site::$template = $param['template'];
