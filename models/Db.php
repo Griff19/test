@@ -5,6 +5,7 @@
  * Класс работы с базой данных
  *
  * @property PDO $connection
+ * @property checkLogin
  */
 
 class Db
@@ -41,34 +42,32 @@ class Db
         }
 
     }
-
-    /**
-     * @return mysqli
-     * @throws Exception
-     */
+	
+	/**
+	 * @return void
+	 */
     public function connect(){
 
     }
-
-    /**
-     * Используется для проверки уникальности логина при вводе
-     * @param $fields
-     * @param $condition
-     * @return array
-     */
-    public function select($fields, $condition)
+	
+	/**
+	 * Используется для проверки уникальности логина при вводе
+	 * @param $login
+	 * @return bool
+	 */
+    public function checkLogin($login)
     {
-        $sql = "SELECT ". $fields ." FROM users WHERE " . $condition;
-        $rows = $this->connection->query($sql);
-        $arr = [];
-        foreach ($rows as $row) {
-            $arr[] = $row;
-        }
-
-        if (!$arr)
-            return false;
-        else
-            return $arr;
+        $sql = "SELECT id FROM users WHERE login = :login";
+        //$sql = "SELECT ". $fields ." FROM users WHERE " . $condition;
+		$prepare = $this->connection->prepare($sql);
+		if (!$prepare) return false;
+		
+		$prepare->execute(['login' => $login]);
+	
+		$res = $prepare->fetch(PDO::FETCH_LAZY);
+		
+		if ($res) return true;
+		else return false;
     }
 
     /**
@@ -107,8 +106,7 @@ class Db
         $sql = "INSERT INTO users (login, user_token, pass, email, snp, memo, link_file) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
         $prepare = $this->connection->prepare($sql);
-        if (!$prepare)
-            return false;
+        if (!$prepare) return false;
         $prepare->execute([$model->login, $model->user_token, $model->password, $model->email,
             $model->snp, $model->memo, $model->file]);
         if ($prepare->errorCode()){

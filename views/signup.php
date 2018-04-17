@@ -57,11 +57,17 @@ if (array_key_exists('user', $GLOBALS)) {
         if (login == "") {
             document.getElementById('err_log').innerHTML = '<?= Voca::t('FILL_FIELD_LOGIN')?>';
             return false;
-        } else {
-            if (!patt.test(login)) {
+        } else if (!patt.test(login)) {
                 document.getElementById('err_log').innerHTML = '<?= Voca::t('LOGIN_INVALID')?>';
                 return false;
-            }
+        } else {
+            $.post('<?= Site::$root ?>/site/validlogin', {login: login}, function(r){
+                let obj = JSON.parse(r);
+                if (obj.res === false) {
+                    document.getElementById('err_log').innerHTML = login + '<?= Voca::t('NAME_USED')?>';
+                    return false
+                }
+            })
         }
         document.getElementById('err_log').innerHTML = "";
         return true;

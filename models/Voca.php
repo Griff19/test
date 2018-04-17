@@ -12,6 +12,7 @@ class Voca
     public static function arrayEn()
     {
         return [
+			'NAME_USED' => 'is already used',
             'TITLE_TEST' => 'Test Task',
             'LINK_HOME' => 'Home',
             'LINK_EXIT' => 'Exit',
@@ -60,6 +61,7 @@ class Voca
     public static function arrayRu()
     {
         return [
+        	'NAME_USED' => 'уже используется',
             'TITLE_TEST' => 'Тестовое Задание',
             'LINK_HOME' => 'Домой',
             'LINK_EXIT' => 'Выйти',

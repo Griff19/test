@@ -22,18 +22,7 @@ if (!isset($route[1]) || !isset($route[2])) {
    header('Location: '. Site::$root. '/site/index');
 }
 
-Site::header();
-Alert::getFlash();
-
-if (Helper::accessClass($route, $_SERVER['REQUEST_METHOD'])) {
-    if ($params) {
-        call_user_func_array([$route[1], $route[2]], $params);
-    } else {
-        call_user_func([$route[1], $route[2]]);
-    }
-} else {
-    $_SESSION['error_url'] = $_SERVER['REQUEST_URI'];
-    Site::error(Voca::t('PAGE_404'), $_SERVER['REQUEST_URI']);
-}
-
-Site::footer();
+if (Helper::isAjax($route)) {
+	Site::content($route, $params);
+} else
+	require_once __DIR__ . '/template/default/index.php';

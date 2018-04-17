@@ -33,12 +33,10 @@ if (trim($s) == "y") {
           `link_file` varchar(255) DEFAULT NULL,
           `memo` text,
           PRIMARY KEY (`id`),
-          UNIQUE KEY `id` (`id`),
-          UNIQUE KEY `login` (`login`),
-          KEY `user_token` (`user_token`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;");
+          UNIQUE KEY `login` (`login`)
+    	) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;");
 
     echo 'Done.' . "\n";
 } else {
-    echo 'Action canceled by the user.';
+    echo 'Action canceled by user.';
 }

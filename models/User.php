@@ -30,7 +30,7 @@ class User
             //Site::error(Voca::t('SR_ERROR'), Voca::t('DB_ERROR'));
             //return false;
         }
-        $rows = $db->select('id, login', "login = '". $this->login ."'");
+        $rows = $db->checkLogin($this->login);
         if ($rows)
             return false;
         else

@@ -7,7 +7,26 @@
 class Site
 {
     public static $root;
-
+    public static $ajax;
+	
+	/**
+	 * @param $route
+	 * @param $params
+	 */
+    public static function content($route, $params)
+	{
+		if (Helper::accessClass($route, $_SERVER['REQUEST_METHOD'])) {
+			if ($params) {
+				call_user_func_array([$route[1], $route[2]], $params);
+			} else {
+				call_user_func([$route[1], $route[2]]);
+			}
+		} else {
+			$_SESSION['error_url'] = $_SERVER['REQUEST_URI'];
+			Site::error(Voca::t('PAGE_404'), $_SERVER['REQUEST_URI']);
+		}
+	}
+	
     /**
      *
      */
@@ -31,7 +50,21 @@ class Site
     {
         include_once __DIR__ . '/../views/index.php';
     }
-
+	
+	/**
+	 * Обращаемся к методу через ajax со страницы site/signup
+	 * @param $login
+	 */
+    public static function validlogin($login)
+	{
+		$db = new Db();
+		if ($db->checkLogin($login))
+			$res = false;
+		else
+			$res = true;
+		
+		echo json_encode(['res' => $res]);
+	}
     /**
      * Авторизация пользователя.
      * Уже авторизованного пользователя просто отправляем в index
@@ -97,5 +130,6 @@ class Site
         header('Location: '. Site::$root .'/site/' . $target);
     }
 }
+
 $config = require __DIR__ . '/../config/local.php';
 Site::$root = $config['site']['root'];

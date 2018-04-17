@@ -7,7 +7,7 @@
 <div>
 
 <h3><?= Voca::t('PAGE_PROFILE')?> "<?= $user->snp?>" </h3>
-<img width="200px" src="../<?= $user->file ?>">
+<img width="200px" src="/<?= $user->file ?>">
 <p>
     <?= Voca::t('YOUR_LOGIN')?>: <?= $user->login ?><br/>
     <?= Voca::t('YOUR_MAIL')?>: <?= $user->email ?><br/>

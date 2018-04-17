@@ -19,16 +19,17 @@ class Helper
         $s = stripslashes($s);
         return $s;
     }
-
-    /**
-     * Определяем можно ли обращаться к классу через url
-     * [
-     *  'className' => 'true' - класс и его функции доступны для вызова
-     *  'className' => ['method' => 'POST|GET'] - класс и его функции доступны только через указанный метод
-     * ]
-     *
-     * @return bool
-     */
+	
+	/**
+	 * Определяем можно ли обращаться к классу через url
+	 * [
+	 *  {{className}} => 'true' - класс и его функции доступны для вызова
+	 *  {{className}} => ['method' => 'POST|GET'] - класс и его функции доступны только через указанный метод
+	 * ]
+	 * @param $route
+	 * @param $method
+	 * @return bool
+	 */
     public static function accessClass($route, $method)
     {
         $class = $route[1];
@@ -53,4 +54,24 @@ class Helper
         }
         return false;
     }
+	
+	/**
+	 * Указываем какие методы могут работать через ajax
+	 * @param $route
+	 * @return bool
+	 */
+    public static function isAjax($route)
+	{
+		$isAjax = [
+			'site' => ['validlogin']
+		];
+		
+		if (array_key_exists($route[1], $isAjax)){
+			if (in_array($route[2], $isAjax[$route[1]])) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }
