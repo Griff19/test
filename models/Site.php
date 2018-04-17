@@ -18,9 +18,9 @@ class Site
 	{
 		if (Helper::accessClass($route, $_SERVER['REQUEST_METHOD'])) {
 			if ($params) {
-				call_user_func_array([$route[1], $route[2]], $params);
+				call_user_func_array([$route[0], $route[1]], $params);
 			} else {
-				call_user_func([$route[1], $route[2]]);
+				call_user_func([$route[0], $route[1]]);
 			}
 		} else {
 			$_SESSION['error_url'] = $_SERVER['REQUEST_URI'];
