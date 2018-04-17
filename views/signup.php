@@ -51,82 +51,80 @@ if (array_key_exists('user', $GLOBALS)) {
 
 <script>
     function validLogin() {
-        var login = document.getElementById('login').value;
-        var patt = /^[a-z0-9_-]+$/i;
-        if (login == "") {
-            document.getElementById('err_log').innerHTML = '<?= Voca::t('FILL_FIELD_LOGIN')?>';
+        let loginVal = login.value;
+        let patt = /^[a-z0-9_-]+$/i;
+        if (loginVal === "") {
+            err_log.innerHTML = '<?= Voca::t('FILL_FIELD_LOGIN')?>';
             return false;
-        } else if (!patt.test(login)) {
-                document.getElementById('err_log').innerHTML = '<?= Voca::t('LOGIN_INVALID')?>';
-                return false;
+        } else if (!patt.test(loginVal)) {
+            err_log.innerHTML = '<?= Voca::t('LOGIN_INVALID')?>';
+            return false;
         } else {
-            $.post('<?= Site::$root ?>/site/validlogin', {login: login}, function(r){
+            $.post('<?= Site::$root ?>/site/validlogin', {login: loginVal}, function(r){
                 let obj = JSON.parse(r);
                 if (obj.res === false) {
-                    document.getElementById('err_log').innerHTML = login + ' <?= Voca::t('NAME_USED')?>';
-                    return false
+                    err_log.innerHTML = loginVal + ' <?= Voca::t('NAME_USED')?>';
+                    return false;
                 }
             })
         }
-        document.getElementById('err_log').innerHTML = "";
+        err_log.innerHTML = "";
         return true;
     }
 
     function validPass1() {
-        var pass1 = document.getElementById('password').value;
-
-        if (pass1 == "") {
-            document.getElementById('err_pass1').innerHTML = "<?= Voca::t('ENTER_PASS')?>";
+        let passVal = password.value;
+        if (passVal === "") {
+            err_pass1.innerHTML = "<?= Voca::t('ENTER_PASS')?>";
             return false;
         } else {
-            var patt = /^[a-z0-9_-]{6,}$/;
-            if (!patt.test(pass1)) {
-                //if (pass1.length < 6) {
-                document.getElementById('err_pass1').innerHTML = "<?= Voca::t('PASS_TO_EASY')?>";
+            let patt = /^[a-z0-9_-]{6,}$/;
+            if (!patt.test(passVal)) {
+                err_pass1.innerHTML = "<?= Voca::t('PASS_TO_EASY')?>";
                 return false;
             }
         }
-        document.getElementById('err_pass1').innerHTML = "";
+        err_pass1.innerHTML = "";
         return true;
     }
 
     function validPass2() {
-        var pass1 = document.getElementById('password').value;
-        var pass2 = document.getElementById('password2').value;
+        let pass1 = password.value;
+        let pass2 = password2.value;
 
-        if (pass1 != "" )
-            if (pass1 != pass2) {
-                document.getElementById('err_pass').innerHTML = "<?= Voca::t('CONFIRM_PASS_MATCH_PASS')?>";
+        if (pass1 !== "" )
+            if (pass1 !== pass2) {
+                err_pass.innerHTML = "<?= Voca::t('CONFIRM_PASS_MATCH_PASS')?>";
                 return false;
             }
-        document.getElementById('err_pass').innerHTML = "";
+        err_pass.innerHTML = "";
         return true;
     }
 
     function validEmail() {
-        var email = document.getElementById('email').value;
-        var patt = /^[-._a-z0-9]+@(?:[a-z0-9][-a-z0-9]+\.)+[a-z]{2,6}$/;
+        let emailVal = email.value;
+        let patt = /^[-._a-z0-9]+@(?:[a-z0-9][-a-z0-9]+\.)+[a-z]{2,6}$/;
 
-        if (!patt.test(email) && email != "") {
-            document.getElementById('err_email').innerHTML = '<?= Voca::t('INVALID_EMAIL')?>';
+        if (!patt.test(emailVal) && emailVal !== "") {
+            err_email.innerHTML = '<?= Voca::t('INVALID_EMAIL')?>';
             return false;
         }
-        document.getElementById('err_email').innerHTML = "";
+        err_email.innerHTML = "";
         return true;
     }
 
     function validSnp() {
-        var snp = document.getElementById('snp').value;
-        var pattern1 = /^[а-яёa-z ]+$/i;
+        let snpVal = snp.value;
+        let pattern1 = /^[а-яёa-z ]+$/i;
 
-        if (snp == "") {
-            document.getElementById('err_snp').innerHTML = "<?= Voca::t('FILL_SNP')?>";
+        if (snpVal === "") {
+            err_snp.innerHTML = "<?= Voca::t('FILL_SNP')?>";
             return false;
-        } else if (!pattern1.test(snp) && snp != "") {
-            document.getElementById('err_snp').innerHTML = "<?= Voca::t('CONTAIN_ONLY_LETTERS')?>";
+        } else if (!pattern1.test(snpVal) && snpVal !== "") {
+            err_snp.innerHTML = "<?= Voca::t('CONTAIN_ONLY_LETTERS')?>";
             return false;
         }
-        document.getElementById('err_snp').innerHTML = "";
+        err_snp.innerHTML = "";
         return true;
     }
 
@@ -146,7 +144,7 @@ if (array_key_exists('user', $GLOBALS)) {
 //    }
 
     function validForm() {
-        var no_error = true;
+        let no_error = true;
 
         if (!validLogin()) no_error = false;
         if (!validPass1()) no_error = false;
