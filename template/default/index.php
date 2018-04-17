@@ -9,7 +9,7 @@
 	<?php //Site::header() ?>
     <link rel="stylesheet" href="<?= Site::$root?><?= Site::$template ?>/style.css">
     <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
-    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="<?= Site::$root?>/favicon.ico" />
 	<meta charset="utf-8">
 	<title><?= Voca::t('TITLE_TEST')?></title>
 </head>
