@@ -7,7 +7,7 @@
 <html lang="ru-Ru">
 <head>
 	<?php //Site::header() ?>
-    <link rel="stylesheet" href="<?= Site::$template ?>/style.css">
+    <link rel="stylesheet" href="<?= Site::$root?>/<?= Site::$template ?>/style.css">
     <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
 	<meta charset="utf-8">
 	<title><?= Voca::t('TITLE_TEST')?></title>
