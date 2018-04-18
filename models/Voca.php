@@ -19,7 +19,7 @@ class Voca
             'LINK_EXIT' => 'Exit',
             'CH_LANGUAGE' => 'Сменить язык',
             'HOME_PAGE' => 'Home Page',
-            'SIGN_IN' => 'Sign in',
+            'SIGN_IN' => 'Log in to the profile',
             'ENTER_LOGIN_AND_PASSWORD' => 'Enter login and password',
             'REGISTER' => 'Register',
             'OR_YOU_CAN' => 'Or You can',
@@ -52,8 +52,10 @@ class Voca
             'LOGIN_INVALID' => 'Invalid Login',
             'FILL_SNP' => 'Please enter your full name',
             'FOR_LOOK_INFORMATION' => 'To view the information You need',
+			'SIGN_UP' => 'to be Registered.',
+			'WELCOME' => 'If you already have a Login and Password then',
 			'FILE_LOAD' => 'File successfully uploaded!',
-			'FILE_ERROR' => 'Error loading file!'
+			'FILE_ERROR' => 'Error loading file!',
         ];
     }
 
@@ -70,7 +72,7 @@ class Voca
             'LINK_EXIT' => 'Выйти',
             'CH_LANGUAGE' => 'Change language',
             'HOME_PAGE' => 'Начальная страница',
-            'SIGN_IN' => 'Войти в профиль',
+            'SIGN_IN' => 'войти в Профиль',
             'ENTER_LOGIN_AND_PASSWORD' => 'Введите логин и пароль',
             'REGISTER' => 'Зарегистрируйтесь',
             'OR_YOU_CAN' => 'Или',
@@ -103,8 +105,10 @@ class Voca
             'LOGIN_INVALID' => 'Логин содержит недопустимый символ',
             'FILL_SNP' => 'Пожалуйста укажите ваше полное имя',
             'FOR_LOOK_INFORMATION' => 'Для просмотра информации Вам необходимо',
+			'SIGN_UP' => 'пройти Регистрацию.',
+			'WELCOME' => 'Если у Вас уже есть Логин и Пароль тогда Вы можете',
 			'FILE_LOAD' => 'Файл успешно загружен!',
-			'FILE_ERROR' => 'Ошибка загрузки файла!'
+			'FILE_ERROR' => 'Ошибка загрузки файла!',
         ];
     }
 
