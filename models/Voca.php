@@ -52,7 +52,8 @@ class Voca
             'LOGIN_INVALID' => 'Invalid Login',
             'FILL_SNP' => 'Please enter your full name',
             'FOR_LOOK_INFORMATION' => 'To view the information You need',
-
+			'FILE_LOAD' => 'File successfully uploaded!',
+			'FILE_ERROR' => 'Error loading file!'
         ];
     }
 
@@ -102,6 +103,8 @@ class Voca
             'LOGIN_INVALID' => 'Логин содержит недопустимый символ',
             'FILL_SNP' => 'Пожалуйста укажите ваше полное имя',
             'FOR_LOOK_INFORMATION' => 'Для просмотра информации Вам необходимо',
+			'FILE_LOAD' => 'Файл успешно загружен!',
+			'FILE_ERROR' => 'Ошибка загрузки файла!'
         ];
     }
 

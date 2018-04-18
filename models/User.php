@@ -88,7 +88,7 @@ class User
         }
 
         if ($str_err !== '') {
-            Alert::setFlash('error', '<span style="color: darkred">' . $str_err . '</span>');
+            Alert::setFlash('error', $str_err);
             return false;
         }
         return true;
@@ -114,7 +114,7 @@ class User
             header('Location: '. Site::$root .'/site/profile');
         }
         else {
-            Alert::setFlash('error', '<span style="color: darkred">'. Voca::t('ACCESS_DENI') .'</span>');
+            Alert::setFlash('error', Voca::t('ACCESS_DENI'));
             header('Location: '. Site::$root .'/site/login');
         }
     }
@@ -143,11 +143,11 @@ class User
         $upload_file = $upload_dir . $file_name;
 
         if (move_uploaded_file($_FILES['user_file']['tmp_name'], $upload_file)) {
-            Alert::setFlash('success', 'Файл был успешно загружен.');
+            Alert::setFlash('success', Voca::t('FILE_LOAD'));
             $this->file = 'img/'. $file_name;
             return $this->file;
         } else {
-            Alert::setFlash('error', 'Ошибка загрузки файла');
+            Alert::setFlash('error', Voca::t('FILE_ERROR'));
             return false;
         }
     }
@@ -169,11 +169,11 @@ class User
         if ($user->validate()) {
             $user->loadfile();
             if ($user->save()) {
-                Alert::setFlash('success', '<span style="color: darkgreen">'. Voca::t('USER') . ' "' . $user->snp . '" ' .Voca::t('ADDED')). '</span>';
+                Alert::setFlash('success', Voca::t('USER') . ' "' . $user->snp . '" ' .Voca::t('ADDED'));
                 header('Location: ' . Site::$root . '/site/login');
                 return true;
             } else {
-                Alert::setFlash('error', '<span style="color: darkred">'. Voca::t('DB_ERROR') . '</span>');
+                Alert::setFlash('error', Voca::t('DB_ERROR'));
                 unlink(Site::$root . '/' .$user->file);
             }
         }
