@@ -26,9 +26,6 @@ class User
         $db = new Db();
         if ($db->errors){
             header('Location: '. Site::$root .'/site/error?error='. Voca::t('SR_ERROR'). '&message=' . Voca::t('DB_ERROR'));
-            //header('Refresh: 0; '. Site::$root .'/site/error?error='. Voca::t('SR_ERROR'). '&message=' . Voca::t('DB_ERROR'));
-            //Site::error(Voca::t('SR_ERROR'), Voca::t('DB_ERROR'));
-            //return false;
         }
         $rows = $db->checkLogin($this->login);
         if ($rows)
@@ -101,7 +98,6 @@ class User
      */
     public static function login($login, $password)
     {
-
         $db = new Db();
         if ($db->errors){
             Site::error(Voca::t('SR_ERROR'), Voca::t('DB_ERROR'));
@@ -202,7 +198,7 @@ class User
 
         return false;
     }
-
+    
     /**
      * Ижем данные в базе для заполнения модели
      * @param $user_token

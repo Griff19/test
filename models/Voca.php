@@ -13,10 +13,13 @@ class Voca
     public static function arrayEn()
     {
         return [
+        	'LANG' => 'en',
 			'NAME_USED' => 'is already used',
             'TITLE_TEST' => 'Test Task',
             'LINK_HOME' => 'Home',
             'LINK_EXIT' => 'Exit',
+			'LINK_SIGN_IN' => 'Sign in',
+			'LINK_SIGN_UP' => 'Sign up',
             'CH_LANGUAGE' => 'Сменить язык',
             'HOME_PAGE' => 'Home Page',
             'SIGN_IN' => 'Log in to the profile',
@@ -56,6 +59,8 @@ class Voca
 			'WELCOME' => 'If you already have a Login and Password then',
 			'FILE_LOAD' => 'File successfully uploaded!',
 			'FILE_ERROR' => 'Error loading file!',
+			'LOGIN_AS' => 'You are authorized as',
+			'FIELDS_STARS' => '* - mandatory fields.'
         ];
     }
 
@@ -66,10 +71,13 @@ class Voca
     public static function arrayRu()
     {
         return [
+			'LANG' => 'ru',
         	'NAME_USED' => 'уже используется',
             'TITLE_TEST' => 'Тестовое Задание',
             'LINK_HOME' => 'Домой',
             'LINK_EXIT' => 'Выйти',
+			'LINK_SIGN_IN' => 'Войти',
+			'LINK_SIGN_UP' => 'Регистрация',
             'CH_LANGUAGE' => 'Change language',
             'HOME_PAGE' => 'Начальная страница',
             'SIGN_IN' => 'войти в Профиль',
@@ -109,6 +117,8 @@ class Voca
 			'WELCOME' => 'Если у Вас уже есть Логин и Пароль тогда Вы можете',
 			'FILE_LOAD' => 'Файл успешно загружен!',
 			'FILE_ERROR' => 'Ошибка загрузки файла!',
+			'LOGIN_AS' => 'Вы авторизованы как',
+			'FIELDS_STARS' => '* - поля, обязательные к заполнению.'
         ];
     }
 

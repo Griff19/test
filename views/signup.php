@@ -45,8 +45,10 @@ if (array_key_exists('user', $GLOBALS)) {
     <textarea id="memo" name="memo" rows="3" cols="40"></textarea>
     <div id="err_memo" class="error"></div>
     <br/>
-    <input type="submit" value="<?= Voca::t('SAVE')?>"><br/>
+    <input type="submit" value="<?= Voca::t('SAVE')?>">
 </form>
+    <br/>
+    <?= Voca::t('FIELDS_STARS')?>
 </div>
 
 <script>

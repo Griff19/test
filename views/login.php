@@ -13,7 +13,7 @@
     <label> <?= Voca::t('USR_PASS')?>: </label><br/>
     <input name="password" type="password" size="15" maxlength="15"><br/><br/>
     
-    <input type="submit" value="<?= Voca::t('SIGN_IN')?>"><br/><br/>
+    <input type="submit" value="<?= Voca::t('LINK_SIGN_IN')?>"><br/><br/>
 </form>
 
 <p>

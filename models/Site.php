@@ -32,11 +32,14 @@ class Site
 	}
 	
 	/**
-	 *
+	 * Выводим меню.
 	 */
 	public static function menu()
 	{
-		include_once __DIR__ . '/../views/menu.php';
+		$pars_url = parse_url(trim($_SERVER['REQUEST_URI'], '/'));
+		$route = explode('/', $pars_url['path']);
+		
+		include __DIR__ . '/../views/menu.php';
 	}
 	
     /**

@@ -4,10 +4,11 @@
  * Шаблон по-умолчанию прописывается в файле config/param.php
  *
  * @var $params [] массив с параметрами POST/GET
+ *
  */
 ?>
 <!DOCTYPE html>
-<html lang="ru-Ru">
+<html lang="<?= Voca::t('LANG')?>">
 <head>
 	<?php Site::header() ?>
     <link rel="stylesheet" href="<?= Site::$root?><?= Site::$template ?>/style.css">
